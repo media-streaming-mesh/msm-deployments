@@ -1,0 +1,34 @@
+# Giles Study Camera
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: camera-giles
+  labels:
+    {{- include "Camera.labels" . | nindent 4 }}
+    app: camera-giles
+spec:
+  selector:
+    matchLabels:
+      app: camera-giles
+  template:
+    metadata:
+      labels:
+        app: camera-giles
+    spec:
+      containers:
+        - name: rtsp-server
+          image: "{{ .Values.rtspServer.name }}:{{ .Values.rtspServer.tag }}"
+          imagePullPolicy: IfNotPresent
+        - name: rtsp-client
+          image: "{{ .Values.rtspClient.name }}:{{ .Values.rtspClient.tag }}"
+          imagePullPolicy: IfNotPresent
+          command: ["ffmpeg"]
+          args: ["-rtsp_transport", "tcp", "-i", "rtsp://msm:RUSTsuxr0x@82.36.109.33:8554/s1", "-an", "-c:v", "copy", "-f", "rtsp", "rtsp://127.0.0.1:554/giles-study"]
+        - name: msm-rtsp-stub
+          image: "{{ .Values.stubImage.name }}:{{ .Values.stubImage.tag }}"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: MSM_LOG_LVL
+              value: "DEBUG"
+            - name: MSM_CONTROL_PLANE
+              value: {{ if eq .Values.kubernetesDistro "K8S" }}"http://10.96.3.1:9000"{{ else if eq .Values.kubernetesDistro "K3S" }}"http://10.43.3.1:9000"{{ end }}

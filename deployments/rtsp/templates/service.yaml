@@ -1,0 +1,17 @@
+# rtsp-svc
+apiVersion: v1
+kind: Service
+metadata:
+  name: mystream
+  labels:
+    app: rtsp
+    {{- include "MSM-RTSP.labels" . | nindent 4 }}
+spec:
+  clusterIP: {{ if eq .Values.kubernetesDistro "K8S" }}"10.96.10.2"{{ else }}"10.43.10.2"{{ end }}
+  ports:
+    - name: rtsp
+      port: 554
+      targetPort: 554
+      protocol: TCP
+  selector:
+    app: rtsp

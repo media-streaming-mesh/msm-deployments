@@ -1,0 +1,15 @@
+kubernetesDistro: "K3S" #change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
+
+rtspServiceClusterIP: "{{ if eq .Values.kubernetesDistro \"K8S\" }}10.96.10.1{{ else if eq .Values.kubernetesDistro \"K3S\" }}10.43.10.1{{ else }}\"\"{{ end }}"
+
+clientImage:
+  name: ciscolabs/rtsp-client
+  tag: latest
+
+serverImage:
+  name: ciscolabs/rtsp-server
+  tag: latest
+
+stubImage:
+  name: ciscolabs/msm-rtsp-stub
+  tag: latest

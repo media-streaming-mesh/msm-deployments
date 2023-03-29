@@ -1,0 +1,34 @@
+# webhook
+apiVersion: v1
+kind: Service
+metadata:
+  name: msm-admission-webhook-svc
+  labels:
+    app: msm-admission-webhook
+    {{- include "MSM.labels" . | nindent 4 }}
+spec:
+  clusterIP: {{ if eq .Values.kubernetesDistro "K8S" }}"10.96.4.1"{{ else }}"10.43.4.1"{{ end }}
+  ports:
+    - port: 443
+      targetPort: 443
+  selector:
+    app: msm-admission-webhook
+
+---
+#msm-controller-svc
+apiVersion: v1
+kind: Service
+metadata:
+  name: msm-controller
+  labels:
+    msm: controller
+    {{- include "MSM.labels" . | nindent 4 }}
+spec:
+  clusterIP: {{ if eq .Values.kubernetesDistro "K8S" }}"10.96.3.1"{{ else }}"10.43.3.1"{{ end }}
+  ports:
+    - name: grpc
+      port: 9000
+      targetPort: 9000
+      protocol: TCP
+  selector:
+    msm: controller
