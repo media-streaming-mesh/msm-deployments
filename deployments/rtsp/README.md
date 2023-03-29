@@ -1,37 +1,36 @@
-# RTSP Sever and Client Deployment via Helm
+#RTSP Deployment on MSM
 
-### Install Helm 
+This repository contains files necessary to deploy a rtsp server app on Media Streaming Mesh (MSM).
 
-Follow the official doc instructions from https://helm.sh/docs/intro/install/
+The deployment is designed to run on a Kubernetes (K8S) and/or K3S.
 
-or
+##Getting Started
+To get started, clone this repository and navigate to the `rtsp` directory.
 
-from script: 
+`git clone https://github.com/media-streaming-mesh/msm-deployments.git`
 
-	$ curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
+`cd msm-deployments/deployments/rtsp`
 
-	$ chmod 700 get_helm.sh
-		
-	$ ./get_helm.sh
+The `rtsp` directory contains the following files and folders:
 
-or if on Mac
 
-	$ brew install helm
 
-### Install RTSP Server/Client
+##Prerequisites
 
-**NOTE**: Please deploy MSM App first before deploying RTSP Server/Client. Refer to Msm-Helm README.
+Before deploying the rtsp app on MSM, ensure that you have the following prerequisites:
 
-> helm install APP_NAME rtsp-server-client/ --values rtsp-server-client/values.yaml
 
-example: 
+##Deployment
+To deploy the rtsp server on MSM, follow these steps:
 
-	$ helm install msm-rtsp rtsp-server-client/ --values rtsp-server-client/values.yaml
+1.
+2.
+3.
 
-**NOTE**: Need to be outside the rtsp-server-client folder to execute this command.
+##Troubleshooting
+If you encounter any issues with the rtsp deployment, check the logs of the rtsp containers.
 
-### Verify the Deployment
+If the issue persists, check the MSM documentation and issue tracker for solutions or report the issue to the MSM community.
 
-	$ helm ls
-
-	$ kubectl get all
+##License
+This repository is licensed under the Apache License, Version 2.0. See the LICENSE file for details.
