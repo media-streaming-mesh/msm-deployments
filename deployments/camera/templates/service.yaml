@@ -15,3 +15,21 @@ spec:
       protocol: TCP
   selector:
     app: camera-giles
+---
+# Ammar IP Camera Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: ammar-ip-cam
+  labels:
+    app: camera-ammar
+    {{- include "Camera.labels" . | nindent 4 }}
+spec:
+  clusterIP: {{ if eq .Values.kubernetesDistro "K8S" }}"10.96.10.1"{{ else }}"10.43.10.1"{{ end }}
+  ports:
+    - name: rtsp
+      port: 554
+      targetPort: 554
+      protocol: TCP
+  selector:
+    app: camera-ammar
