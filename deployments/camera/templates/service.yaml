@@ -25,7 +25,7 @@ metadata:
     app: camera-ammar
     {{- include "Camera.labels" . | nindent 4 }}
 spec:
-  clusterIP: {{ if eq .Values.kubernetesDistro "K8S" }}"10.96.10.1"{{ else }}"10.43.10.1"{{ end }}
+  clusterIP: {{ if eq .Values.kubernetesDistro "K8S" }}"10.96.10.2"{{ else }}"10.43.10.2"{{ end }}
   ports:
     - name: rtsp
       port: 554
