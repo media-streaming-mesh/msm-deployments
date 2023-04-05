@@ -1,8 +1,4 @@
-kubernetesDistro: "K3S" #change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
-
-controlPlaneIP: "{{ if eq .Values.kubernetesDistro \"K8S\" }}10.96.3.1{{ else if eq .Values.kubernetesDistro \"K3S\" }}10.43.3.1{{ end }}"
-
-webhookClusterIP: "{{ if eq .Values.kubernetesDistro \"K8S\" }}10.96.4.1{{ else if eq .Values.kubernetesDistro \"K3S\" }}10.43.4.1{{ end }}"
+kubernetesDistro: "K8S" #change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
 
 nodeSelector: "{{ if eq .Values.kubernetesDistro \"K8S\" }}{{ else if eq .Values.kubernetesDistro \"K3S\" }}true{{ end }}"
 

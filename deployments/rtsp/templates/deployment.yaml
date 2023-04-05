@@ -39,6 +39,8 @@ spec:
     metadata:
       labels:
         app: rtsp
+      annotations:
+        sidecar.mediastreamingmesh.io/inject: "true"
     spec:
       containers:
         - name: rtsp-server
@@ -52,9 +54,6 @@ spec:
           volumeMounts:
             - mountPath: /tmp
               name: movies
-        - name: msm-rtsp-stub
-          image: "{{ .Values.stubImage.name }}:{{ .Values.stubImage.tag }}"
-          imagePullPolicy: IfNotPresent
       volumes:
         - name: movies
           hostPath:
