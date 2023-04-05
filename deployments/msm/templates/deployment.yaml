@@ -41,7 +41,7 @@ spec:
             - name: MSM_LOG_LVL
               value: "DEBUG"
             - name: MSM_CONTROL_PLANE
-              value: "msm-controller"
+              value: "http://msm-controller:9000"
             - name: MY_NODE_NAME
               valueFrom:
                 fieldRef:
