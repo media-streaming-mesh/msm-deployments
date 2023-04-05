@@ -41,7 +41,7 @@ spec:
             - name: MSM_LOG_LVL
               value: "DEBUG"
             - name: MSM_CONTROL_PLANE
-              value: {{ tpl .Values.controlPlaneIP . }}
+              value: "msm-controller"
       nodeSelector:
         node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
 

@@ -120,4 +120,4 @@ spec:
             - name: LOCAL_RTP_PORT
               value: "8000"
             - name: MSM_CONTROL_PLANE
-              value: {{ if eq .Values.kubernetesDistro "K8S" }}"http://10.96.3.1:9000"{{ else if eq .Values.kubernetesDistro "K3S" }}"http://10.43.3.1:9000"{{ end }}
+              value: "http://msm-controller:9000"
