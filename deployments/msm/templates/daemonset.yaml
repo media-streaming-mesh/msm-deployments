@@ -90,6 +90,7 @@ spec:
         msm: gateway
     spec:
       hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: msm-proxy
           image: "{{ .Values.proxyImage.name }}:{{ .Values.proxyImage.tag }}"
@@ -121,3 +122,23 @@ spec:
               value: "8000"
             - name: MSM_CONTROL_PLANE
               value: "http://msm-controller:9000"
+            - name: MSM_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: MSM_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MSM_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: MSM_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: MSM_POD_SERVICE_ACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName
