@@ -31,7 +31,27 @@ spec:
             - name: MSM_LOG_LVL
               value: "DEBUG"
             - name: MSM_CONTROL_PLANE
-              value: {{ if eq .Values.kubernetesDistro "K8S" }}"http://10.96.3.1:9000"{{ else if eq .Values.kubernetesDistro "K3S" }}"http://10.43.3.1:9000"{{ end }}
+              value: "http://msm-controller:9000"
+            - name: MSM_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: MSM_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MSM_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: MSM_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: MSM_POD_SERVICE_ACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName
 ---
 # Ammar IP Camera
 apiVersion: apps/v1
@@ -66,4 +86,24 @@ spec:
             - name: MSM_LOG_LVL
               value: "DEBUG"
             - name: MSM_CONTROL_PLANE
-              value: {{ if eq .Values.kubernetesDistro "K8S" }}"http://10.96.3.1:9000"{{ else if eq .Values.kubernetesDistro "K3S" }}"http://10.43.3.1:9000"{{ end }}
+              value: "http://msm-controller:9000"
+            - name: MSM_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: MSM_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MSM_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: MSM_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: MSM_POD_SERVICE_ACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName
