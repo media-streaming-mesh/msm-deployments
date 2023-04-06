@@ -1,6 +1,6 @@
 # MSM Deployments
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/media-streaming-mesh/helm-charts/release.yaml?branch=main&style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/media-streaming-mesh/msm-deployments/release.yaml?branch=main&style=flat-square)
 [![Artifact HUB](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/media-streaming-mesh)](https://artifacthub.io/packages/search?repo=media-streaming-mesh)
 
 This repository contains deployment scripts and configurations for the Media Streaming Mesh (MSM) project.
