@@ -1,8 +1,10 @@
-kubernetesDistro: "K8S" #change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
+# change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
+kubernetesDistro: "K8S"
 
 nodeSelector: "{{ if eq .Values.kubernetesDistro \"K8S\" }}{{ else if eq .Values.kubernetesDistro \"K3S\" }}true{{ end }}"
 
-namespace: "{{ if eq .Values.kubernetesDistro \"K8S\" }}default{{ else if eq .Values.kubernetesDistro \"K3S\" }}gbear{{ end }}"  #change the gbear to desired namespace for K3S.
+# change the gbear to desired namespace for K3S.
+namespace: "{{ if eq .Values.kubernetesDistro \"K8S\" }}default{{ else if eq .Values.kubernetesDistro \"K3S\" }}gbear{{ end }}"
 
 cniClusterRole: msm-cni
 
@@ -25,21 +27,21 @@ controllerName: msm-controller
 controllerDeployment: controller
 
 cniImage:
-  name: ciscolabs/msm-cni
+  name: ghcr.io/media-streaming-mesh/msm-cni
   tag: latest
 
 proxyImage:
-  name: ciscolabs/msm-proxy
+  name: ghcr.io/media-streaming-mesh/msm-dp
   tag: latest
 
 stubImage:
-  name: ciscolabs/msm-rtsp-stub
+  name: ghcr.io/media-streaming-mesh/msm-rtsp-stub
   tag: latest
 
 webhookImage:
-  name: ciscolabs/msm-admission-webhook
+  name: ghcr.io/media-streaming-mesh/msm-admission-webhook
   tag: latest
 
 controllerImage:
-  name: ciscolabs/msm-controller
+  name: ghcr.io/media-streaming-mesh/msm-cp
   tag: latest
