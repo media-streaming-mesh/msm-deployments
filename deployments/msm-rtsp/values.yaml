@@ -7,5 +7,5 @@ serverImage:
   tag: latest
 
 stubImage:
-  name: ciscolabs/msm-rtsp-stub
+  name: ghcr.io/media-streaming-mesh/msm-rtsp-stub
   tag: latest

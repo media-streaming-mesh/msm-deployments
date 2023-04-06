@@ -25,21 +25,21 @@ controllerName: msm-controller
 controllerDeployment: controller
 
 cniImage:
-  name: ciscolabs/msm-cni
+  name: ghcr.io/media-streaming-mesh/msm-cni
   tag: latest
 
 proxyImage:
-  name: ciscolabs/msm-proxy
+  name: ghcr.io/media-streaming-mesh/msm-dp
   tag: latest
 
 stubImage:
-  name: ciscolabs/msm-rtsp-stub
+  name:  ghcr.io/media-streaming-mesh/msm-rtsp-stub
   tag: latest
 
 webhookImage:
-  name: ciscolabs/msm-admission-webhook
+  name: ghcr.io/media-streaming-mesh/msm-admission-webhook
   tag: latest
 
 controllerImage:
-  name: ciscolabs/msm-controller
+  name: ghcr.io/media-streaming-mesh/msm-cp
   tag: latest
