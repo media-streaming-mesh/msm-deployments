@@ -1,0 +1,11 @@
+rtspServer:
+  name: ciscolabs/rtsp-server
+  tag: latest
+
+rtspClient:
+  name: ciscolabs/rtsp-client
+  tag: latest
+
+stubImage:
+  name: ghcr.io/media-streaming-mesh/msm-rtsp-stub
+  tag: latest

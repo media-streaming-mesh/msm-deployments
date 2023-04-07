@@ -1,0 +1,16 @@
+# nginx controller admission service
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "Controller.labels" . | nindent 4 }}
+  name: ingress-nginx-controller-admission
+spec:
+  ports:
+  - appProtocol: https
+    name: https-webhook
+    port: 443
+    targetPort: webhook
+  selector:
+    {{- include "Selector.labels" . | nindent 4 }}
+  type: ClusterIP
