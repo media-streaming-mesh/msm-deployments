@@ -3,6 +3,7 @@ kind: DaemonSet
 apiVersion: apps/v1
 metadata:
   name: msm-cni
+  namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
   labels:
     app: msm-cni
     {{- include "MSM.labels" . | nindent 4 }}
@@ -77,6 +78,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: msm-gateway
+  namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
   labels:
     msm: gateway
     {{- include "MSM.labels" . | nindent 4 }}

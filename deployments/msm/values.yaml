@@ -3,28 +3,7 @@ kubernetesDistro: "K8S"
 
 nodeSelector: "{{ if eq .Values.kubernetesDistro \"K8S\" }}{{ else if eq .Values.kubernetesDistro \"K3S\" }}true{{ end }}"
 
-# change the gbear to desired namespace for K3S.
-namespace: "{{ if eq .Values.kubernetesDistro \"K8S\" }}default{{ else if eq .Values.kubernetesDistro \"K3S\" }}gbear{{ end }}"
-
-cniClusterRole: msm-cni
-
-cniConfigMap: msm-cni-config
-
-webhookClusterRole: msm-admission-webhook-role
-
-webhookClusterRoleBinding: msm-admission-webhook-binding
-
-webhookServiceAccount: msm-admission-webhook-sa
-
-gatewayDaemonSet: msm-gateway
-
-gatewayName: gateway
-
-webhookDeployment: msm-admission-webhook
-
 controllerName: msm-controller
-
-controllerDeployment: controller
 
 cniImage:
   name: ghcr.io/media-streaming-mesh/msm-cni
