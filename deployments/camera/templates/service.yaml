@@ -16,6 +16,24 @@ spec:
   selector:
     app: camera-giles
 ---
+# Giles Study Camera HLS 
+apiVersion: v1
+kind: Service
+metadata:
+  name: giles-study-hls
+  labels:
+    app: camera-giles
+    {{- include "Camera.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: hls 
+      port: 8888 
+      targetPort: 8888 
+      protocol: TCP
+  selector:
+    app: camera-giles
+---
 # Ammar IP Camera Service
 apiVersion: v1
 kind: Service
@@ -30,6 +48,24 @@ spec:
     - name: rtsp
       port: 554
       targetPort: 554
+      protocol: TCP
+  selector:
+    app: camera-ammar
+---
+# Ammar IP Camera HLS
+apiVersion: v1
+kind: Service
+metadata:
+  name: ammar-ip-cam-hls
+  labels:
+    app: camera-ammar
+    {{- include "Camera.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: hls 
+      port: 8888 
+      targetPort: 8888 
       protocol: TCP
   selector:
     app: camera-ammar
