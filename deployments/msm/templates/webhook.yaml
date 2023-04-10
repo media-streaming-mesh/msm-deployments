@@ -1,0 +1,32 @@
+kind: MutatingWebhookConfiguration
+apiVersion: admissionregistration.k8s.io/v1
+metadata:
+  name: msm-admission-webhook-{{ .Release.Namespace }}
+  labels:
+webhooks:
+- admissionReviewVersions:
+    - v1
+  name:  msm-admission-webhook-{{ .Release.Namespace }}.mediastreamingmesh.io
+  clientConfig:
+    service:
+      name: msm-admission-webhook-svc
+      namespace: {{ .Release.Namespace }}
+      path: "/mutate"
+      port: 443
+  sideEffects: None
+  objectSelector:
+    matchExpressions:
+    - key: sidecar.mediastreamingmesh.io/inject
+      operator: In
+      values:
+      - "true"
+  rules:
+  - operations: [ "CREATE", "UPDATE" ]
+    apiGroups: [""]
+    apiVersions: ["v1"]
+    resources: ["pods"]
+    scope: "*"
+  failurePolicy: Ignore
+  sideEffects: None
+  timeoutSeconds: 10
+

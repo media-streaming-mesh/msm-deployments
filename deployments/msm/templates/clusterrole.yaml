@@ -28,6 +28,8 @@ rules:
       - nodes
     verbs:
       - get
+      - list
+      - watch
 ---
 # controller-prep
 apiVersion: rbac.authorization.k8s.io/v1

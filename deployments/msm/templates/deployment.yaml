@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: msm-admission-webhook
+  namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
   labels:
     app: msm-admission-webhook
     {{- include "MSM.labels" . | nindent 4 }}
@@ -62,6 +63,10 @@ spec:
               valueFrom:
                 fieldRef:
                   fieldPath: spec.serviceAccountName
+            - name: IGNORED_NAMESPACE
+              value: {{ .Release.Namespace }}
+            - name: WEBHOOK_CONFIG_NAME
+              value: msm-admission-webhook-{{ .Release.Namespace }}
       nodeSelector:
         node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
 
@@ -71,6 +76,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: msm-controller
+  namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
   labels:
     msm: controller
     {{- include "MSM.labels" . | nindent 4 }}
@@ -91,7 +97,7 @@ spec:
         - key: node-role.kubernetes.io/control-plane
           operator: Exists
           effect: NoSchedule
-      serviceAccountName: msm-controller
+      serviceAccountName: msm-controller-sa
       containers:
         - name: msm-controller
           image: "{{ .Values.controllerImage.name }}:{{ .Values.controllerImage.tag }}"

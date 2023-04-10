@@ -8,7 +8,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: msm-admission-webhook-sa
-    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}default{{ else }}gbear{{ end }}
+    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
 roleRef:
   kind: ClusterRole
   name: msm-admission-webhook-role
@@ -30,7 +30,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: msm-cni
-    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}default{{ else }}gbear{{ end }}
+    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
 
 ---
 #msm-controller
@@ -46,8 +46,8 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 subjects:
   - kind: ServiceAccount
-    name: msm-controller
-    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}default{{ else }}gbear{{ end }}
+    name: msm-controller-sa
+    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -63,5 +63,5 @@ roleRef:
   name: node-watcher
 subjects:
   - kind: ServiceAccount
-    name: msm-controller
-    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}default{{ else }}gbear{{ end }}
+    name: msm-controller-sa
+    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
