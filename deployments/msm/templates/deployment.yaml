@@ -64,7 +64,7 @@ spec:
                 fieldRef:
                   fieldPath: spec.serviceAccountName
             - name: IGNORED_NAMESPACE
-              value: {{ .Release.Namespace }}
+              value: {{ "ingress-nginx" }}
             - name: WEBHOOK_CONFIG_NAME
               value: msm-admission-webhook-{{ .Release.Namespace }}
       nodeSelector:
