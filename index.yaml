@@ -15,6 +15,14 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/camera-0.0.2/camera-0.0.2.tgz
     version: 0.0.2
+  ingress:
+  - apiVersion: v2
+    created: "2023-04-10T15:11:36.017642114Z"
+    digest: 8273d00093669771cc0763ddae5d2fd0f793cdf7c02d06917e683cc2462849df
+    name: ingress
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/ingress-0.0.3/ingress-0.0.3.tgz
+    version: 0.0.3
   msm:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -47,4 +55,4 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/msm-rtsp-0.0.2/msm-rtsp-0.0.2.tgz
     version: 0.0.2
-generated: "2023-04-10T15:11:05.232640772Z"
+generated: "2023-04-10T15:11:36.017659714Z"
