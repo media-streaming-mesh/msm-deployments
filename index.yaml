@@ -33,6 +33,16 @@ entries:
   msm:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-04-10T17:25:58.160385994Z"
+    description: A Helm chart for MSM Deployment
+    digest: 4e154830cca8b268ef474bf53d192d16f41a77d5a84af2e31db3ff226450718f
+    name: msm
+    type: application
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/msm-0.0.4/msm-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-04-10T15:11:05.232627972Z"
     description: A Helm chart for MSM Deployment
     digest: c672dee113ab09a0818d4db48124f8071c4512477c2ff5487834d39708ecea4d
@@ -73,4 +83,4 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/rtsp-0.0.3/rtsp-0.0.3.tgz
     version: 0.0.3
-generated: "2023-04-10T17:08:33.66156247Z"
+generated: "2023-04-10T17:25:58.160406395Z"
