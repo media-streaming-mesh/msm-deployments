@@ -26,7 +26,7 @@ Each deployment scenario has its own README file with instructions on how to set
 ## Usage
 
 [Helm](https://helm.sh) must be installed to use these charts.
-Please refer to the [official documentation](https://helm.sh/docs/intro/install/) to get started.
+Please refer to the [official documentation](https://helm.sh/docs/intro/install/) to get started.  The below command assume a v3 Helm version, although the charts should work with Helm v2 the command options may be different. 
 
 ```shell
 helm repo add msm https://charts.mediastreamingmesh.io
@@ -41,9 +41,7 @@ helm search repo msm
 You can install charts using the following command:
 
 ```shell
-helm install --generate-name msm/CHART
-# OR
-helm install --name my-release msm/CHART
+helm install <your-name> msm/CHART --namespace <your-namespace> --create-namespace
 ```
 
 > **Tip**: List all installed releases using `helm list`.
@@ -51,7 +49,7 @@ helm install --name my-release msm/CHART
 To uninstall a chart release:
 
 ```shell
-helm delete my-release
+helm delete my-release --namespace <your-namespace>
 ```
 
 ## **Contributing**
