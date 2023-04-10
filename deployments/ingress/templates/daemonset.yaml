@@ -94,7 +94,6 @@ spec:
         - mountPath: /usr/local/certificates/
           name: webhook-cert
           readOnly: true
-      dnsPolicy: ClusterFirst
       nodeSelector:
         kubernetes.io/os: linux
       serviceAccountName: ingress-nginx
