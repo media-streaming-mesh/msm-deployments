@@ -62,4 +62,15 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/msm-rtsp-0.0.2/msm-rtsp-0.0.2.tgz
     version: 0.0.2
-generated: "2023-04-10T15:32:35.653852041Z"
+  rtsp:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-04-10T17:08:33.66154747Z"
+    description: A Helm chart for RSTP Server and (Internal) Client
+    digest: 4768e430dcb10256b74eb8a6eceed98b07c4ec2bc5cbd7a3ef2697552762c4bf
+    name: rtsp
+    type: application
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/rtsp-0.0.3/rtsp-0.0.3.tgz
+    version: 0.0.3
+generated: "2023-04-10T17:08:33.66156247Z"
