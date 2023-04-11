@@ -11,6 +11,8 @@ MSM facilitates real-time audio and video streaming over the Internet using a di
 
 The deployments in this repository are designed to help users quickly set up and run an MSM deployment.
 
+Note that the initial implementation of MSM only supports a single media stream per pod and a single media stream between any two nodes.  These limitations will be resolved when we move from the current Golang prototype data-plane to an asynchronous Rust data-plane.
+
 ## **Contents**
 
 This repository contains several directories, each of which represents a different deployment scenario:
@@ -19,7 +21,9 @@ This repository contains several directories, each of which represents a differe
 
 `camera`: Contains templates and values for deploying Live Camera Feeds on MSM using Helm Charts.
 
-`msm-rtsp`: Contains templates and values for deploying an RTSP Server on MSM using Helm Charts.
+`ingress`: Containes templates and values for deploying an nginx ingress on MSM using Helm Charts.
+
+`rtsp`: Contains templates and values for deploying an RTSP Server on MSM using Helm Charts.
 
 Each deployment scenario has its own README file with instructions on how to set up and run the deployment.
 
