@@ -1,4 +1,5 @@
-ingressName: control-plane 
-ingressServiceName: msm-controller
-ingressServicePort: 9000
-ingressUrl: "/msm_cp*"
+ingress:
+  name: control-plane 
+  serviceName: msm-controller
+  servicePort: 9000
+  url: "/msm_cp*"
