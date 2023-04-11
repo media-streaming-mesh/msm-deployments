@@ -3,6 +3,7 @@ apiVersion: admissionregistration.k8s.io/v1
 metadata:
   name: msm-admission-webhook-{{ .Release.Namespace }}
   labels:
+    {{- include "MSM.labels" . | nindent 4 }}
 webhooks:
 - admissionReviewVersions:
     - v1
@@ -27,6 +28,5 @@ webhooks:
     resources: ["pods"]
     scope: "*"
   failurePolicy: Ignore
-  sideEffects: None
   timeoutSeconds: 10
 
