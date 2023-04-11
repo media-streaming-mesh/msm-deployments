@@ -4,6 +4,7 @@ metadata:
   labels:
     {{- include "Controller.labels" . | nindent 4 }}
   name: ingress-nginx
+  namespace: {{ .Release.Namespace }}
 rules:
 - apiGroups:
   - ""

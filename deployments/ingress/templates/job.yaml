@@ -4,6 +4,7 @@ metadata:
   labels:
     {{- include "Webhook.labels" . | nindent 4 }}
   name: ingress-nginx-admission-create
+  namespace: {{ .Release.Namespace }}
 spec:
   template:
     metadata:
@@ -42,6 +43,7 @@ metadata:
   labels:
     {{- include "Webhook.labels" . | nindent 4 }}
   name: ingress-nginx-admission-patch
+  namespace: {{ .Release.Namespace }}
 spec:
   template:
     metadata:
