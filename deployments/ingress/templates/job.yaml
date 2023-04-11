@@ -4,7 +4,6 @@ metadata:
   labels:
     {{- include "Webhook.labels" . | nindent 4 }}
   name: ingress-nginx-admission-create
-  namespace: gbear
 spec:
   template:
     metadata:
@@ -43,7 +42,6 @@ metadata:
   labels:
     {{- include "Webhook.labels" . | nindent 4 }}
   name: ingress-nginx-admission-patch
-  namespace: gbear
 spec:
   template:
     metadata:

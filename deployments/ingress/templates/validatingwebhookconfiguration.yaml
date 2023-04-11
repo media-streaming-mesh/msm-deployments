@@ -10,7 +10,6 @@ webhooks:
   clientConfig:
     service:
       name: ingress-nginx-controller-admission
-      namespace: gbear
       path: /networking/v1/ingresses
   failurePolicy: Fail
   matchPolicy: Equivalent

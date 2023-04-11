@@ -1,11 +1,7 @@
-rtspServer:
-  name: ciscolabs/rtsp-server
-  tag: latest
+hls-ingress: control-plane 
 
-rtspClient:
-  name: ciscolabs/rtsp-client
-  tag: latest
+hls-service: msm-controller
 
-stubImage:
-  name: ghcr.io/media-streaming-mesh/msm-rtsp-stub
-  tag: latest
+hls-url: "/msm_cp*"
+
+hls-port: 9000
