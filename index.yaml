@@ -17,6 +17,13 @@ entries:
     version: 0.0.2
   ingress:
   - apiVersion: v2
+    created: "2023-04-11T18:32:21.446838475Z"
+    digest: 2787b13af8060a33370352e887be64e1b521ef775acae7898d9f4e0afde4d44d
+    name: ingress
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/ingress-0.0.5/ingress-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
     created: "2023-04-10T15:32:35.653840041Z"
     digest: 0cc84e2171d5341ad1f3b789f1ff24b6306bfc13f201b0a2eae14e3f457319c1
     name: ingress
@@ -83,4 +90,4 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/rtsp-0.0.3/rtsp-0.0.3.tgz
     version: 0.0.3
-generated: "2023-04-10T17:25:58.160406395Z"
+generated: "2023-04-11T18:32:21.446976086Z"
