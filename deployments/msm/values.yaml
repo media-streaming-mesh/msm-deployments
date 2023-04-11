@@ -1,5 +1,5 @@
 # change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
-kubernetesDistro: "K3S"
+kubernetesDistro: "K8S"
 
 nodeSelector: "{{ if eq .Values.kubernetesDistro \"K8S\" }}{{ else if eq .Values.kubernetesDistro \"K3S\" }}true{{ end }}"
 
