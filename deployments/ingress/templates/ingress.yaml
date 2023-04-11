@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   labels:
     {{- include "Ingress.labels" . | nindent 4 }}
-  name: {{- include .Values.ingress-name }}
+  name: {{ .Values.ingressName }}
 spec:
   ingressClassName: nginx
   rules:
@@ -11,8 +11,8 @@ spec:
       paths:
       - backend:
           service:
-            name: {{- include .Values.ingress-service-name }}
+            name: {{ .Values.ingressServiceName }}
             port:
-              number: {{- include .Values.ingress-service-port }}
-        path: {{- include .Values.ingress-url }}
+              number: {{ .Values.ingressServicePort }}
+        path: {{ .Values.ingressUrl }}
         pathType: Prefix
