@@ -4,7 +4,7 @@ metadata:
   labels:
     {{- include "Controller.labels" . | nindent 4 }}
   name: ingress-nginx
-  namespace: gbear
+  namespace: {{ .Release.Namespace }}
 rules:
 - apiGroups:
   - ""
@@ -90,7 +90,6 @@ metadata:
   labels:
     {{- include "Webhook.labels" . | nindent 4 }}
   name: ingress-nginx-admission
-  namespace: gbear
 rules:
 - apiGroups:
   - ""

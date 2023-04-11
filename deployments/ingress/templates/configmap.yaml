@@ -6,4 +6,4 @@ metadata:
   labels:
     {{- include "Controller.labels" . | nindent 4 }}
   name: ingress-nginx-controller
-  namespace: gbear
+  namespace: {{ .Release.Namespace }}

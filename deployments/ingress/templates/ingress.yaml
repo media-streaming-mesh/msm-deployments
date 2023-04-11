@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   labels:
     {{- include "Ingress.labels" . | nindent 4 }}
-  name: giles
+  name: {{ .Values.ingress.name }}
 spec:
   ingressClassName: nginx
   rules:
@@ -11,8 +11,8 @@ spec:
       paths:
       - backend:
           service:
-            name: giles-study-hls
+            name: {{ .Values.ingress.serviceName }}
             port:
-              number: 8888
-        path: /giles-study
+              number: {{ .Values.ingress.servicePort }}
+        path: {{ .Values.ingress.url }}
         pathType: Prefix

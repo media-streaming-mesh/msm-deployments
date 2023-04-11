@@ -4,7 +4,7 @@ metadata:
   labels:
     {{- include "Controller.labels" . | nindent 4 }}
   name: ingress-nginx
-  namespace: gbear
+  namespace: {{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -12,7 +12,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: ingress-nginx
-  namespace: gbear
+  namespace: {{ .Release.Namespace }}
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -20,7 +20,7 @@ metadata:
   labels:
     {{- include "Webhook.labels" . | nindent 4 }}
   name: ingress-nginx-admission
-  namespace: gbear
+  namespace: {{ .Release.Namespace }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -28,4 +28,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: ingress-nginx-admission
-  namespace: gbear
+  namespace: {{ .Release.Namespace }}
