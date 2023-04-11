@@ -2,6 +2,13 @@ apiVersion: v1
 entries:
   camera:
   - apiVersion: v2
+    created: "2023-04-11T22:51:03.268917942Z"
+    digest: 08bcbbd2c5321b5b55bad248dc071082cec1037ebcaae8cebbfa86796ebd9ba8
+    name: camera
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/camera-0.0.9/camera-0.0.9.tgz
+    version: 0.0.9
+  - apiVersion: v2
     created: "2023-04-11T20:26:41.790031409Z"
     digest: 9331d6c9033fe7fa9711980e20be50e7be4b9c287b362b6cedf623b6dcc045fd
     name: camera
@@ -97,4 +104,4 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/rtsp-0.0.3/rtsp-0.0.3.tgz
     version: 0.0.3
-generated: "2023-04-11T20:26:41.790282013Z"
+generated: "2023-04-11T22:51:03.268958542Z"
