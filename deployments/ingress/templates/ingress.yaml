@@ -11,8 +11,8 @@ spec:
       paths:
       - backend:
           service:
-            name: {{- include .Values.ingress-service }}
+            name: {{- include .Values.ingress-service-name }}
             port:
-              number: {{- include .Values.ingress-port }}
-        path: {{- include .Values.ingresss-url }}
+              number: {{- include .Values.ingress-service-port }}
+        path: {{- include .Values.ingress-url }}
         pathType: Prefix

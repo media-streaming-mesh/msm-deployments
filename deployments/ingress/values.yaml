@@ -1,7 +1,4 @@
-hls-ingress: control-plane 
-
-hls-service: msm-controller
-
-hls-url: "/msm_cp*"
-
-hls-port: 9000
+ingress-name: control-plane 
+ingres-service-name: msm-controller
+ingresss-service-port: 9000
+ingresss-url: "/msm_cp*"
