@@ -2,6 +2,13 @@ apiVersion: v1
 entries:
   camera:
   - apiVersion: v2
+    created: "2023-04-11T23:29:46.618849836Z"
+    digest: ebacbb13be9b00c218de4337cee596e7875eb4fa11b1eee05ed6d7eb0274baa3
+    name: camera
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/camera-0.1.0/camera-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
     created: "2023-04-11T22:51:03.268917942Z"
     digest: 08bcbbd2c5321b5b55bad248dc071082cec1037ebcaae8cebbfa86796ebd9ba8
     name: camera
@@ -31,6 +38,13 @@ entries:
     version: 0.0.2
   ingress:
   - apiVersion: v2
+    created: "2023-04-11T23:29:46.758202876Z"
+    digest: 3dad20c3be78ceb9f395f6aed3281e0c2b3df710edfbfbe6643d5ed00681a84e
+    name: ingress
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/ingress-0.1.0/ingress-0.1.0.tgz
+    version: 0.1.0
+  - apiVersion: v2
     created: "2023-04-11T18:32:21.446838475Z"
     digest: 2787b13af8060a33370352e887be64e1b521ef775acae7898d9f4e0afde4d44d
     name: ingress
@@ -52,6 +66,16 @@ entries:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/ingress-0.0.3/ingress-0.0.3.tgz
     version: 0.0.3
   msm:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-04-11T23:29:46.973906499Z"
+    description: A Helm chart for MSM Deployment
+    digest: e2f04045670bc4ba25460c6546271035785a5dea5b29b780578280892981a96b
+    name: msm
+    type: application
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/msm-0.1.0/msm-0.1.0.tgz
+    version: 0.1.0
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-04-10T17:25:58.160385994Z"
@@ -104,4 +128,4 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/rtsp-0.0.3/rtsp-0.0.3.tgz
     version: 0.0.3
-generated: "2023-04-11T22:51:03.268958542Z"
+generated: "2023-04-11T23:29:46.973943399Z"
