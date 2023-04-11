@@ -5,15 +5,15 @@ metadata:
   name: camera-giles
   labels:
     {{- include "Camera.labels" . | nindent 4 }}
-    app: camera-giles
+    app: {{ .Values.camera.appName }}
 spec:
   selector:
     matchLabels:
-      app: camera-giles
+      app: {{ .Values.camera.appName }}
   template:
     metadata:
       labels:
-        app: camera-giles
+        app: {{ .Values.camera.appName }}
     spec:
       containers:
         - name: rtsp-server
@@ -23,62 +23,7 @@ spec:
           image: "{{ .Values.rtspClient.name }}:{{ .Values.rtspClient.tag }}"
           imagePullPolicy: IfNotPresent
           command: ["ffmpeg"]
-          args: ["-rtsp_transport", "tcp", "-i", "rtsp://msm:RUSTsuxr0x@82.36.109.33:8554/s1", "-an", "-c:v", "copy", "-f", "rtsp", "rtsp://127.0.0.1:554/giles-study"]
-        - name: msm-rtsp-stub
-          image: "{{ .Values.stubImage.name }}:{{ .Values.stubImage.tag }}"
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: MSM_LOG_LVL
-              value: "DEBUG"
-            - name: MSM_CONTROL_PLANE
-              value: "http://msm-controller:9000"
-            - name: MSM_NODE_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: spec.nodeName
-            - name: MSM_POD_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.name
-            - name: MSM_POD_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
-            - name: MSM_POD_IP
-              valueFrom:
-                fieldRef:
-                  fieldPath: status.podIP
-            - name: MSM_POD_SERVICE_ACCOUNT
-              valueFrom:
-                fieldRef:
-                  fieldPath: spec.serviceAccountName
----
-# Ammar IP Camera
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: camera-ammar
-  labels:
-    {{- include "Camera.labels" . | nindent 4 }}
-    app: camera-ammar
-spec:
-  selector:
-    matchLabels:
-      app: camera-ammar
-  template:
-    metadata:
-      labels:
-        app: camera-ammar
-    spec:
-      containers:
-        - name: rtsp-server
-          image: "{{ .Values.rtspServer.name }}:{{ .Values.rtspServer.tag }}"
-          imagePullPolicy: IfNotPresent
-        - name: rtsp-client
-          image: "{{ .Values.rtspClient.name }}:{{ .Values.rtspClient.tag }}"
-          imagePullPolicy: IfNotPresent
-          command: ["ffmpeg"]
-          args: ["-rtsp_transport", "tcp", "-i", "rtsp://msm:RUSTsuxr0x@73.192.165.3:8554/h264Preview_02_sub", "-an", "-c:v", "copy", "-f", "rtsp", "rtsp://127.0.0.1:554/ammar-ip-cam"]
+          args: ["-rtsp_transport", "tcp", "-i", "{{ .Values.camera.cameraUrl }}", "-an", "-c:v", "copy", "-f", "rtsp", "{{ .Values.camera.serverUrl }}"]
         - name: msm-rtsp-stub
           image: "{{ .Values.stubImage.name }}:{{ .Values.stubImage.tag }}"
           imagePullPolicy: IfNotPresent

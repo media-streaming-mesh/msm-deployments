@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    {{- include "Camera.labels" . | nindent 4 }}
+  name: {{ .Values.camera.ingressName }}
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - backend:
+          service:
+            name: {{ .Values.camera.hlsName }}
+            port:
+              number: {{ .Values.camera.hlsPort }}
+        path: {{ .Values.camera.hlsUrl }}
+        pathType: Prefix
