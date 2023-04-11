@@ -1,5 +1,5 @@
 ingress:
-  name: control-plane 
+  name: control-plane
   serviceName: msm-controller
   servicePort: 9000
   url: "/msm_cp*"
