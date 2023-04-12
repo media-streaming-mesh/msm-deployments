@@ -1,0 +1,72 @@
+---
+# msm-gateway
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: msm-gateway
+  namespace: {{ .Release.Namespace }}
+  labels:
+    msm: gateway
+    {{- include "Edge.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      msm: gateway
+  template:
+    metadata:
+      labels:
+        msm: gateway
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: msm-proxy
+          image: "{{ .Values.proxyImage.name }}:{{ .Values.proxyImage.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: rtp
+              protocol: UDP
+              containerPort: 8050
+            - name: rtcp
+              protocol: UDP
+              containerPort: 8051
+            - name: grpc
+              protocol: TCP
+              containerPort: 9000
+          env:
+            - name: LOG_LVL
+              value: "DEBUG"
+        - name: msm-rtsp-stub
+          image: "{{ .Values.stubImage.name }}:{{ .Values.stubImage.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: rtsp
+              protocol: TCP
+              containerPort: 8554
+          env:
+            - name: MSM_LOG_LVL
+              value: "DEBUG"
+            - name: LOCAL_RTP_PORT
+              value: "8000"
+            - name: MSM_CONTROL_PLANE
+              value: "http://msm-controller:9000"
+            - name: MSM_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: MSM_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MSM_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: MSM_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: MSM_POD_SERVICE_ACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName

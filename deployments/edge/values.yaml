@@ -1,0 +1,9 @@
+controller_url: "http://3.136.135.6"
+
+proxyImage:
+  name: ghcr.io/media-streaming-mesh/msm-dp
+  tag: latest
+
+stubImage:
+  name: ghcr.io/media-streaming-mesh/msm-rtsp-stub
+  tag: latest
