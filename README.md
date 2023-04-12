@@ -62,9 +62,13 @@ We welcome contributions to this repository. If you would like to contribute, pl
 
 Before submitting a pull request, please make sure that your changes follow our coding guidelines and that all tests pass.
 
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
 ## **License**
 
-MSM Deployments is licensed under the Apache License, Version 2.0. See the LICENSE file for more information.
+MSM Deployments is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0). See the LICENSE file for more information.
 
 ## **Contact**
 
