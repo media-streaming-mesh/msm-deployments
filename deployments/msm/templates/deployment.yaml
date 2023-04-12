@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: msm-admission-webhook
-  namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
+  namespace: {{ .Release.Namespace }}
   labels:
     app: msm-admission-webhook
     {{- include "MSM.labels" . | nindent 4 }}
@@ -76,7 +76,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: msm-controller
-  namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
+  namespace: {{ .Release.Namespace }}
   labels:
     msm: controller
     {{- include "MSM.labels" . | nindent 4 }}

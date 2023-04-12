@@ -8,7 +8,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: msm-admission-webhook-sa
-    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
+    namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
   name: msm-admission-webhook-role
@@ -30,7 +30,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: msm-cni
-    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
+    namespace: {{ .Release.Namespace }}
 
 ---
 #msm-controller
@@ -47,7 +47,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: msm-controller-sa
-    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
+    namespace: {{ .Release.Namespace }}
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -64,4 +64,4 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: msm-controller-sa
-    namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
+    namespace: {{ .Release.Namespace }}

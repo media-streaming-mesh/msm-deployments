@@ -3,7 +3,7 @@ kind: DaemonSet
 apiVersion: apps/v1
 metadata:
   name: msm-cni
-  namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
+  namespace: {{ .Release.Namespace }}
   labels:
     app: msm-cni
     {{- include "MSM.labels" . | nindent 4 }}
@@ -78,7 +78,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: msm-gateway
-  namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
+  namespace: {{ .Release.Namespace }}
   labels:
     msm: gateway
     {{- include "MSM.labels" . | nindent 4 }}
@@ -123,7 +123,7 @@ spec:
             - name: LOCAL_RTP_PORT
               value: "8000"
             - name: MSM_CONTROL_PLANE
-              value: "http://msm-controller:9000"
+              value: {{ .Values.controllerUrl }}
             - name: MSM_NODE_NAME
               valueFrom:
                 fieldRef:
