@@ -71,7 +71,7 @@ helm install <YOUR_APP_NAME> camera/ --values camera/values.yaml
 ## Usage
 Verify everything is in Running state on your Kubernetes Cluster 
 
-```kubectl get pods -A```
+```kubectl get pods -A``` or ```kubectl get all```
 
 You can just go to 
 
