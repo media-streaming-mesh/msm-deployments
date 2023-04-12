@@ -3,7 +3,7 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: msm-cni-config
-  namespace: {{ if eq .Values.kubernetesDistro "K8S" }}{{ .Release.Namespace }}{{ else }}gbear{{ end }}
+  namespace: {{ .Release.Namespace }}
   labels:
     app: msm-cni
     {{- include "MSM.labels" . | nindent 4 }}
