@@ -8,7 +8,7 @@
 
 > This repository contains files to deploy a camera app on Media Streaming Mesh (MSM).
 >
-> The deployment consists of a camera that captures video and audio and an MSM node that streams the video and audio to other nodes in the mesh network.
+> The deployment consists of a pod that reaches out to an RTSP camera (using RTSP over TCP) and stores that video to a local RTSP/HLS server, plus K8s services for RTSP and HLS feeds and an ingress to reach the HLS feed.
 >
 > The deployment can run on Kubernetes (K8S) and K3S.
 
@@ -54,13 +54,13 @@ e.g. <br>
 ```sh
 camera:
 &nbsp;&nbsp;&nbsp;&nbsp;appName: <your_app_name>
-&nbsp;&nbsp;&nbsp;&nbsp;ingressName: <your_app_ingress_name>
-&nbsp;&nbsp;&nbsp;&nbsp;rtspName: <your_app_rtsp_name>
-&nbsp;&nbsp;&nbsp;&nbsp;hlsName: <your_app_hls_name>
+&nbsp;&nbsp;&nbsp;&nbsp;ingressName: <your_ingress_name>
+&nbsp;&nbsp;&nbsp;&nbsp;rtspName: <your_app_name>
+&nbsp;&nbsp;&nbsp;&nbsp;hlsName: <your_hls_service_name>
 &nbsp;&nbsp;&nbsp;&nbsp;rtspPort: 554
 &nbsp;&nbsp;&nbsp;&nbsp;hlsPort: 8888
 &nbsp;&nbsp;&nbsp;&nbsp;hlsUrl: "/<your_app_name>"
-&nbsp;&nbsp;&nbsp;&nbsp;cameraUrl: "rtsp://<cam_user>:<cam_pass>@<cam_public_IP>:8554/<stream_name>"
+&nbsp;&nbsp;&nbsp;&nbsp;cameraUrl: "rtsp://<cam_user>:<cam_pass>@<cam_public_IP>:<cam_port>/<stream_name>"
 &nbsp;&nbsp;&nbsp;&nbsp;serverUrl: "rtsp://0.0.0.0:554/<your_app_name>"
 ```
 
