@@ -3,7 +3,7 @@ kubernetesDistro: "K8S"
 
 nodeSelector: "{{ if eq .Values.kubernetesDistro \"K8S\" }}{{ else if eq .Values.kubernetesDistro \"K3S\" }}true{{ end }}"
 
-controllerName: msm-controller
+controllerUrl: "http://msm-controller:9000"
 
 cniImage:
   name: ghcr.io/media-streaming-mesh/msm-cni
