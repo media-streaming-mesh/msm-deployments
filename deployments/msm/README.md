@@ -1,36 +1,94 @@
-# MSM Deployment
+<h1 align="center">MSM App </h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
+  <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">
+    <img alt="License: Apache License, Version 2.0" src="https://img.shields.io/badge/License-Apache License, Version 2.0-yellow.svg" />
+  </a>
+</p>
 
-This repository contains files necessary to deploy a MSM app. 
+This repository contains files necessary to deploy an MSM app.
+
+TODO: 
 
 The deployment is designed to run on a Kubernetes (K8S) and/or K3S.
 
 ## Getting Started
-To get started, clone this repository and navigate to the `msm` directory.
 
-`git clone https://github.com/media-streaming-mesh/msm-deployments.git`
+To get started, clone this repository and navigate to the ```msm``` directory.
+```sh
+git clone https://github.com/media-streaming-mesh/msm-deployments.git
+```
+```sh
+cd msm-deployments/deployments/msm
+```
 
-`cd msm-deployments/deployments/msm`
+## Directory Structure
 
-The `msm` directory contains the following files and folders:
+The ```msm``` directory contains the following files and folders:
 
-
+📦msm
+┣ 📂gbear<br>
+┃ ┗ 📜appmetadata.yaml<br>
+┣ 📂templates<br>
+┃ ┣ 📜_helpers.tpl<br>
+┃ ┣ 📜clusterrole.yaml<br>
+┃ ┣ 📜clusterrolebinding.yaml<br>
+┃ ┣ 📜configmap.yaml<br>
+┃ ┣ 📜daemonset.yaml<br>
+┃ ┣ 📜deployment.yaml<br>
+┃ ┣ 📜service.yaml<br>
+┃ ┣ 📜serviceaccount.yaml<br>
+┃ ┗ 📜webhook.yaml<br>
+┣ 📜.helmignore<br>
+┣ 📜Chart.yaml<br>
+┣ 📜README.md<br>
+┗ 📜values.yaml<br>
 
 ## Prerequisites
 
-Before deploying the MSM app, ensure that you have the following prerequisites:
+Before deploying the ```MSM``` app on the node, ensure that you have the following prerequisites:
 
+* You will need to have access to a ```Kubernetes cluster```.<br>
+* [Helm](https://helm.sh) charts must be installed to use these charts. <br>
 
-## Deployment
-To deploy the MSM, follow these steps:
+## Install
 
-1. 
-2.
-3.
+Before installing the ```msm``` app onto the node, make sure to change the value ```kubernetesDistro``` under ```values.yaml``` file as per your needs. <br>
+e.g. <br>
+```sh
+# change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
+kubernetesDistro: "K8S"
+```
 
-## Troubleshooting
-If you encounter any issues with the MSM deployment, check the logs of the containers.
+```sh
+helm install <YOUR_APP_NAME> msm/ --values msm/values.yaml
+```
 
-If the issue persists, check the MSM documentation and issue tracker for solutions or report the issue to the MSM community.
+## Usage
+Verify everything is in Running state on your Kubernetes Cluster
 
-## License
-This repository is licensed under the Apache License, Version 2.0. See the LICENSE file for details.
+```kubectl get pods -A```
+
+or 
+
+```kubectl get all```
+
+## Contributing
+
+We welcome contributions to this repository. If you would like to contribute to this repository, please follow these guidelines:
+
+* Fork the repository and make your changes on a new branch.
+
+* Submit a pull request with your changes, and include a detailed description of the changes you made.
+
+* Follow the repository's code style and formatting guidelines.
+
+## Show your support
+
+Give a ⭐️ if this project helped you!
+
+## 📝 License
+
+The MSM Camera App/Deployments are under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
+
+***
