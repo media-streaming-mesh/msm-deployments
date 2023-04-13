@@ -1,4 +1,4 @@
-<h1 align="center">Welcome to Live Camera Feed/Real-Time Video Deployment on MSM 👋</h1>
+<h1 align="center">Live Camera Feed/Real-Time Video Deployment on MSM</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
   <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">
@@ -6,11 +6,11 @@
   </a>
 </p>
 
-> This repository contains files to deploy a camera app on Media Streaming Mesh (MSM).
->
-> The deployment consists of a pod that reaches out to an RTSP camera (using RTSP over TCP) and stores that video to a local RTSP/HLS server, plus K8s services for RTSP and HLS feeds and an ingress to reach the HLS feed.
->
-> The deployment can run on Kubernetes (K8S) and K3S.
+This repository contains files to deploy a camera app on Media Streaming Mesh (MSM).
+
+The deployment consists of a pod that reaches out to an RTSP camera (using RTSP over TCP) and stores that video to a local RTSP/HLS server, plus K8s services for RTSP and HLS feeds and an ingress to reach the HLS feed.
+
+The deployment can run on Kubernetes (K8S) and K3S.
 
 ## Getting Started
 
@@ -42,9 +42,9 @@ The ```camera``` directory contains the following files and folders:
 
 Before deploying the ```camera``` app on the ```MSM``` node, ensure that you have the following prerequisites:
 
-You will need to have access to a ```Kubernetes cluster```.<br>
-[Helm](https://helm.sh) charts must be installed to use these charts. <br>
-Before deploying ```Camera``` App, ensure <b>```MSM```</b> and <b>```Ingress```</b> Apps are deployed and running.<br><br>
+* You will need to have access to a ```Kubernetes cluster```.<br>
+* [Helm](https://helm.sh) charts must be installed to use these charts. <br>
+* Before deploying ```Camera``` App, ensure <b>```MSM```</b> and <b>```Ingress```</b> Apps are deployed and running.<br><br>
 **Follow the instructions for deploying ```MSM``` and ```Ingress``` apps by following their README in their folders.<br>**
 
 ## Install
@@ -53,15 +53,15 @@ Before installing the camera app, change the values of the camera fields under v
 e.g. <br>
 ```sh
 camera:
-&nbsp;&nbsp;&nbsp;&nbsp;appName: <your_app_name>
-&nbsp;&nbsp;&nbsp;&nbsp;ingressName: <your_ingress_name>
-&nbsp;&nbsp;&nbsp;&nbsp;rtspName: <your_app_name>
-&nbsp;&nbsp;&nbsp;&nbsp;hlsName: <your_hls_service_name>
-&nbsp;&nbsp;&nbsp;&nbsp;rtspPort: 554
-&nbsp;&nbsp;&nbsp;&nbsp;hlsPort: 8888
-&nbsp;&nbsp;&nbsp;&nbsp;hlsUrl: "/<your_app_name>"
-&nbsp;&nbsp;&nbsp;&nbsp;cameraUrl: "rtsp://<cam_user>:<cam_pass>@<cam_public_IP>:<cam_port>/<stream_name>"
-&nbsp;&nbsp;&nbsp;&nbsp;serverUrl: "rtsp://0.0.0.0:554/<your_app_name>"
+  appName: <your_app_name>
+  ingressName: <your_ingress_name>
+  rtspName: <your_app_name>
+  hlsName: <your_hls_service_name>
+  rtspPort: 554
+  hlsPort: 8888
+  hlsUrl: "/<your_app_name>"
+  cameraUrl: "rtsp://<cam_user>:<cam_pass>@<cam_public_IP>:<cam_port>/<stream_name>"
+  serverUrl: "rtsp://0.0.0.0:554/<your_app_name>"
 ```
 
 ```sh
