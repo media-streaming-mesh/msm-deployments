@@ -11,7 +11,7 @@ cniImage:
 
 proxyImage:
   name: ghcr.io/media-streaming-mesh/msm-dp
-  tag: latest
+  tag: kubecon
 
 stubImage:
   name: ghcr.io/media-streaming-mesh/msm-rtsp-stub
