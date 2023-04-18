@@ -1,6 +1,6 @@
 # msm
 
-![version: 0.1.4](https://img.shields.io/badge/version-0.1.4-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.16.0](https://img.shields.io/badge/app%20version-1.16.0-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-msm-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/msm)
+![version: 0.1.5](https://img.shields.io/badge/version-0.1.5-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.16.0](https://img.shields.io/badge/app%20version-1.16.0-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-msm-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/msm)
 
 A Helm chart for MSM Deployment
 

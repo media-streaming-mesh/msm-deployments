@@ -1,6 +1,6 @@
 # rtsp
 
-![version: 0.0.3](https://img.shields.io/badge/version-0.0.3-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.16.0](https://img.shields.io/badge/app%20version-1.16.0-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-rtsp-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/rtsp)
+![version: 0.0.4](https://img.shields.io/badge/version-0.0.4-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.16.0](https://img.shields.io/badge/app%20version-1.16.0-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-rtsp-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/rtsp)
 
 A Helm chart for RSTP Server and (Internal) Client
 

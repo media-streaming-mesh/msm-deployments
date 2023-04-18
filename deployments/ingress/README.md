@@ -1,6 +1,6 @@
 # ingress
 
-![version: 0.1.0](https://img.shields.io/badge/version-0.1.0-informational?style=flat-square)    [![artifact hub](https://img.shields.io/badge/artifact%20hub-ingress-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/ingress)
+![version: 0.1.1](https://img.shields.io/badge/version-0.1.1-informational?style=flat-square)    [![artifact hub](https://img.shields.io/badge/artifact%20hub-ingress-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/ingress)
 
 ## TL;DR;
 
