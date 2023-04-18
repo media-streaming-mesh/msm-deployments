@@ -8,4 +8,4 @@ bin/helm-docs-${HELM_DOCS_VERSION}:
 
 .PHONY: docs
 docs: bin/helm-docs
-	bin/helm-docs -s file -c charts/ -t ../docs/templates/overrides.gotmpl -t README.md.gotmpl
+	bin/helm-docs -s file -c deployments/ -t ../docs/templates/overrides.gotmpl -t README.md.gotmpl
