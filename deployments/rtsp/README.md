@@ -6,9 +6,9 @@
   </a>
 </p>
 
-This repository contains files necessary to deploy a rtsp server app on Media Streaming Mesh (MSM).
+This repository contains files necessary to deploy an RTSP server app on Media Streaming Mesh (MSM).
 
-The deployment consists of a pods that reaches out to an RTSP stream (using RTSP over TCP).
+The deployment consists of an rtsp-server deployment and service.  It also contains an ingress configuration and a service for providing HLS access to the RTSP server.
 
 The deployment can run on Kubernetes (K8S) and K3S.
 
@@ -32,6 +32,7 @@ The ```rtsp``` directory contains the following files and folders:
  ┣ 📂templates<br>
  ┃ ┣ 📜_helpers.tpl<br>
  ┃ ┣ 📜deployment.yaml<br>
+ ┃ ┣ 📜ingress.yaml<br>
  ┃ ┗ 📜service.yaml<br>
  ┣ 📜.helmignore<br>
  ┣ 📜Chart.yaml<br>
