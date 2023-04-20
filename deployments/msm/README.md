@@ -6,15 +6,13 @@
   </a>
 </p>
 
-This repository contains files necessary to deploy an MSM app.
+This repository contains a Helm chart that deploys the MSM infrastructure.
 
-TODO: 
-
-The deployment is designed to run on a Kubernetes (K8S) and/or K3S.
+The deployment is designed to run on Kubernetes (K8S) and/or K3S.
 
 ## Getting Started
 
-To get started, clone this repository and navigate to the ```msm``` directory.
+To get started, clone the msm-deployments repository and navigate to the ```msm``` directory.
 ```sh
 git clone https://github.com/media-streaming-mesh/msm-deployments.git
 ```
@@ -49,7 +47,7 @@ The ```msm``` directory contains the following files and folders:
 Before deploying the ```MSM``` app on the node, ensure that you have the following prerequisites:
 
 * You will need to have access to a ```Kubernetes cluster```.<br>
-* [Helm](https://helm.sh) charts must be installed to use these charts. <br>
+* [Helm](https://helm.sh) must be installed to use these charts. <br>
 
 ## Install
 
