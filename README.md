@@ -55,6 +55,7 @@ To uninstall a chart release:
 ```shell
 helm delete my-release --namespace <your-namespace>
 ```
+Our recommendation is that you deploy the msm helm chart first, as that sets up the base MSM infrastructure.  Then deploy the ingress helm chart if you want support for HLS streaming as well as RTSP.  Finally deploy the rtsp chart (if you want to use a fake camera feed) or the camera chart (if you have a real RTSP camera).
 
 ## **Contributing**
 
