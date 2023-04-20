@@ -23,6 +23,8 @@ spec:
         - name: rtsp-client
           image: "{{ .Values.clientImage.name }}:{{ .Values.clientImage.tag }}"
           imagePullPolicy: IfNotPresent
+          command: ["ffmpeg"]
+          args: ["-re", "-stream_loop", "-1", "-i", "/tmp/video.mp4", "-an", "-c:v", "copy", "-f", "rtsp", "rtsp://0.0.0.0:554/mystream"]
           volumeMounts:
             - mountPath: /tmp
               name: movies

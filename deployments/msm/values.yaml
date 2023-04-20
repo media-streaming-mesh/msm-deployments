@@ -23,4 +23,4 @@ webhookImage:
 
 controllerImage:
   name: ghcr.io/media-streaming-mesh/msm-cp
-  tag: latest
+  tag: kubecon 
