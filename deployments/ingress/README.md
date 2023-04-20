@@ -8,8 +8,6 @@
 
 This repository contains files necessary to deploy an nginx ingress for HLS (HTTP Live Streaming) on top of Media Streaming Mesh (MSM). 
 
-The deployment consists of an nginx ingress that directs to /giles-study on port 80 to port 8888 of the giles-study-hls service.
-
 The deployment can run on Kubernetes (K8S) and K3S.
 
 ## Getting Started
@@ -35,7 +33,6 @@ The ```ingress``` directory contains the following files and folders:
  ┃ ┣ 📜clusterrolebinding.yaml<br>
  ┃ ┣ 📜configmap.yaml<br>
  ┃ ┣ 📜daemonset.yaml<br>
- ┃ ┣ 📜ingress.yaml<br>
  ┃ ┣ 📜ingressclass.yaml<br>
  ┃ ┣ 📜job.yaml<br>
  ┃ ┣ 📜role.yaml<br>
@@ -52,7 +49,7 @@ The ```ingress``` directory contains the following files and folders:
 Before deploying the ```ingress``` app on the ```MSM``` node, ensure that you have the following prerequisites:
 
 * You will need to have access to a ```Kubernetes cluster```.<br>
-* [Helm](https://helm.sh) charts must be installed to use these charts. <br>
+* [Helm](https://helm.sh) must be installed to use these charts. <br>
 * Before deploying ```ingress``` App, ensure <b>```MSM```</b> App is deployed and running.<br><br>
 **Follow the instructions for deploying ```MSM``` app by following its README in its folder.<br>**
 
