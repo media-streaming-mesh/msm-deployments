@@ -23,7 +23,7 @@ spec:
           image: "{{ .Values.rtspClient.name }}:{{ .Values.rtspClient.tag }}"
           imagePullPolicy: IfNotPresent
           command: ["ffmpeg"]
-          args: ["-rtsp_transport", "tcp", "-i", "{{ .Values.camera.cameraUrl }}", "-an", "-c:v", "copy", "-f", "rtsp", "rtsp://0.0.0.0:554/{{ .Values.config.appName }}"]
+          args: ["-rtsp_transport", "tcp", "-i", "{{ .Values.config.cameraUrl }}", "-an", "-c:v", "copy", "-f", "rtsp", "rtsp://0.0.0.0:554/{{ .Values.config.appName }}"]
         - name: msm-rtsp-stub
           image: "{{ .Values.stubImage.name }}:{{ .Values.stubImage.tag }}"
           imagePullPolicy: IfNotPresent

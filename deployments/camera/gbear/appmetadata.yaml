@@ -25,12 +25,12 @@ icon: https://www.mediastreamingmesh.io/assets/shared/logos/logo-dark-horizontal
 # A list of configuration fields that are provided as run-time values of the Helm deployment. 
 configuration:
   - name: appName
-    title: Your App Name
-    value: msm-camera-app
+    title: App Name
+    value: Your app name e.g. msm-camera-app
     key: config.appName
     type: String
-#  - name: cameraURL
-#    title: Camera URL
-#    value: rtsp://msm:RUSTsuxr0x@82.36.109.33:8554/s1
-#    key: config.cameraURL
-#    type: String
+  - name: cameraUrl
+    title: Camera URL
+    value: Your Camera URL e.g rtsp://admin:password@CAMERA_IP:RTSP_PORT/CAMERA_STREAM_NAME
+    key: config.cameraUrl
+    type: String

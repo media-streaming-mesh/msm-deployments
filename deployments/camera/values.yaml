@@ -13,7 +13,6 @@ stubImage:
 camera:
   rtspPort: 554
   hlsPort: 8888
-  cameraUrl: "rtsp://msm:RUSTsuxr0x@82.36.109.33:8554/s1"
 
 config:
   appName: ""
