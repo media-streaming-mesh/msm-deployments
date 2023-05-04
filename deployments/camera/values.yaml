@@ -11,12 +11,10 @@ stubImage:
   tag: latest
 
 camera:
-  appName: giles-study
-  ingressName: giles-study
-  rtspName: giles-study
-  hlsName: giles-study-hls
   rtspPort: 554
   hlsPort: 8888
-  hlsUrl: "/giles-study"
   cameraUrl: "rtsp://msm:RUSTsuxr0x@82.36.109.33:8554/s1"
-  serverUrl: "rtsp://0.0.0.0:554/giles-study"
+
+config:
+  appName: ""
+  cameraUrl: ""

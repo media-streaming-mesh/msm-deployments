@@ -2,18 +2,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: camera-giles
+  name: msm-live
   labels:
     {{- include "Camera.labels" . | nindent 4 }}
-    app: {{ .Values.camera.appName }}
+    app: {{ .Values.config.appName }}
 spec:
   selector:
     matchLabels:
-      app: {{ .Values.camera.appName }}
+      app: {{ .Values.config.appName }}
   template:
     metadata:
       labels:
-        app: {{ .Values.camera.appName }}
+        app: {{ .Values.config.appName }}
     spec:
       containers:
         - name: rtsp-server
@@ -23,7 +23,7 @@ spec:
           image: "{{ .Values.rtspClient.name }}:{{ .Values.rtspClient.tag }}"
           imagePullPolicy: IfNotPresent
           command: ["ffmpeg"]
-          args: ["-rtsp_transport", "tcp", "-i", "{{ .Values.camera.cameraUrl }}", "-an", "-c:v", "copy", "-f", "rtsp", "{{ .Values.camera.serverUrl }}"]
+          args: ["-rtsp_transport", "tcp", "-i", "{{ .Values.camera.cameraUrl }}", "-an", "-c:v", "copy", "-f", "rtsp", "rtsp://0.0.0.0:554/{{ .Values.config.appName }}"]
         - name: msm-rtsp-stub
           image: "{{ .Values.stubImage.name }}:{{ .Values.stubImage.tag }}"
           imagePullPolicy: IfNotPresent
