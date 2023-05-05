@@ -15,3 +15,21 @@ spec:
       protocol: TCP
   selector:
     app: rtsp
+---
+# hls-svc
+apiVersion: v1
+kind: Service
+metadata:
+  name: mystream-hls
+  labels:
+    app: rtsp
+    {{- include "MSM-RTSP.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - name: hls
+      port: 8888
+      targetPort: 8888
+      protocol: TCP
+  selector:
+    app: rtsp

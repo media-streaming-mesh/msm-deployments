@@ -11,12 +11,9 @@ stubImage:
   tag: latest
 
 camera:
-  appName: mystream
-  ingressName: mystream
-  rtspName: mystream
-  hlsName: mystream-hls
   rtspPort: 554
   hlsPort: 8888
-  hlsUrl: "/mystream"
-  cameraUrl: "rtsp://1.2.3.4:8554/s1"
-  serverUrl: "rtsp://0.0.0.0:554/mystream"
+
+config:
+  appName: ""
+  cameraUrl: ""

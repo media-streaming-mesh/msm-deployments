@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   labels:
     {{- include "Camera.labels" . | nindent 4 }}
-  name: {{ .Values.camera.ingressName }}
+  name: {{ .Values.config.appName }}
 spec:
   ingressClassName: nginx
   rules:
@@ -11,8 +11,8 @@ spec:
       paths:
       - backend:
           service:
-            name: {{ .Values.camera.hlsName }}
+            name: "{{ .Values.config.appName }}-hls"
             port:
               number: {{ .Values.camera.hlsPort }}
-        path: {{ .Values.camera.hlsUrl }}
+        path: "/{{ .Values.config.appName }}"
         pathType: Prefix
