@@ -1,0 +1,7 @@
+controllerImage:
+  name: registry.k8s.io/ingress-nginx/controller
+  tag: v1.7.0@sha256:7612338342a1e7b8090bef78f2a04fffcadd548ccaabe8a47bf7758ff549a5f7
+
+certgenImage:
+  name: registry.k8s.io/ingress-nginx/kube-webhook-certgen
+  tag: v20230312-helm-chart-4.5.2-28-g66a760794@sha256:01d181618f270f2a96c04006f33b2699ad3ccb02da48d0f89b22abce084b292f

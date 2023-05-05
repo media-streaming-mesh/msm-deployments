@@ -11,7 +11,7 @@ cniImage:
 
 proxyImage:
   name: ghcr.io/media-streaming-mesh/msm-dp
-  tag: kubecon
+  tag: latest
 
 stubImage:
   name: ghcr.io/media-streaming-mesh/msm-rtsp-stub
@@ -23,4 +23,4 @@ webhookImage:
 
 controllerImage:
   name: ghcr.io/media-streaming-mesh/msm-cp
-  tag: kubecon 
+  tag: latest
