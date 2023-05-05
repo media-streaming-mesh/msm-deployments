@@ -43,7 +43,7 @@ The ```camera``` directory contains the following files and folders:
 Before deploying the ```camera``` app on the ```MSM``` node, ensure that you have the following prerequisites:
 
 * You will need to have access to a ```Kubernetes cluster```.<br>
-* [Helm](https://helm.sh) charts must be installed to use these charts. <br>
+* [Helm](https://helm.sh) must be installed to use these charts. <br>
 * Before deploying ```Camera``` App, ensure <b>```MSM```</b> and <b>```Ingress```</b> Apps are deployed and running.<br><br>
 **Follow the instructions for deploying ```MSM``` and ```Ingress``` apps by following their README in their folders.<br>**
 
