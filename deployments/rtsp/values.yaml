@@ -4,7 +4,7 @@ clientImage:
 
 serverImage:
   name: ciscolabs/rtsp-server
-  tag: kubecon
+  tag: latest
 
 stubImage:
   name: ghcr.io/media-streaming-mesh/msm-rtsp-stub
