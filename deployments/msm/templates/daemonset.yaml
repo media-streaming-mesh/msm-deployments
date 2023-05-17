@@ -110,6 +110,14 @@ spec:
           env:
             - name: LOG_LVL
               value: "DEBUG"
+          readinessProbe:
+            exec:
+              command: ["grpc-health-probe", "-addr=:9000"]
+            initialDelaySeconds: 2
+          livenessProbe:
+            exec:
+              command: ["grpc-health-probe", "-addr=:9000"]
+            initialDelaySeconds: 10
         - name: msm-rtsp-stub
           image: "{{ .Values.stubImage.name }}:{{ .Values.stubImage.tag }}"
           imagePullPolicy: IfNotPresent
