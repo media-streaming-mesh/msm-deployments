@@ -59,6 +59,10 @@ spec:
             # Deploy as a standalone CNI plugin or as chained?
             - name: CHAINED_CNI_PLUGIN
               value: "true"
+            - name: LOG_LEVEL
+              value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
           volumeMounts:
             - mountPath: /host/opt/cni/bin
               name: cni-bin-dir
@@ -108,8 +112,10 @@ spec:
               protocol: TCP
               containerPort: 9000
           env:
-            - name: LOG_LVL
+            - name: LOG_LEVEL
               value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
           readinessProbe:
             exec:
               command: ["grpc-health-probe", "-addr=:9000"]

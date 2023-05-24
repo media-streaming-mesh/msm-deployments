@@ -49,6 +49,8 @@ spec:
               value: "IfNotPresent"
             - name: LOG_LVL
               value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
             - name: MSM_LOG_LVL
               value: "DEBUG"
             - name: MSM_CONTROL_PLANE
@@ -119,5 +121,48 @@ spec:
           env:
             - name: LOG_LVL
               value: "TRACE"
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
+---
+# msm-network-controller
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msm-network-controller
+  namespace: {{ .Release.Namespace }}
+  labels:
+    msm: controller
+    {{- include "MSM.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      msm: controller
+  template:
+    metadata:
+      labels:
+        msm: controller
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+          effect: NoSchedule
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      serviceAccountName: msm-controller-sa
+      containers:
+        - name: msm-network-controller
+          image: "{{ .Values.networkControllerImage.name }}:{{ .Values.networkControllerImage.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: grpc
+              protocol: TCP
+              containerPort: 9000
+          env:
+            - name: LOG_LEVEL
+              value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
       nodeSelector:
         node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
