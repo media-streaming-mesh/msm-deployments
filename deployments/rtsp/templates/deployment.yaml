@@ -32,3 +32,27 @@ spec:
         - name: movies
           hostPath:
             path: /tmp
+---
+# rtsp-client
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtsp-client
+  labels:
+    app: client
+    {{- include "MSM-RTSP.labels" . | nindent 4 }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+        sidecar.mediastreamingmesh.io/inject: "true"
+    spec:
+      containers:
+        - name: rtsp-client
+          image: "{{ .Values.clientImage.name }}:{{ .Values.clientImage.tag }}"
+          imagePullPolicy: IfNotPresent

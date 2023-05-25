@@ -8,6 +8,7 @@ metadata:
     {{- include "MSM-RTSP.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
+  clusterIP: 10.96.10.1
   ports:
     - name: rtsp
       port: 554

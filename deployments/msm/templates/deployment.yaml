@@ -29,8 +29,8 @@ spec:
           image: "{{ .Values.webhookImage.name }}:{{ .Values.webhookImage.tag }}"
           imagePullPolicy: IfNotPresent
           ports:
-          - protocol: TCP
-            containerPort: 8080
+            - protocol: TCP
+              containerPort: 8080
           livenessProbe:
             httpGet:
               path: /livenessz
@@ -54,7 +54,7 @@ spec:
             - name: MSM_LOG_LVL
               value: "DEBUG"
             - name: MSM_CONTROL_PLANE
-              value: "http://msm-controller:9000"
+              value: {{ .Values.controllerUrl }}
             - name: MY_NODE_NAME
               valueFrom:
                 fieldRef:
