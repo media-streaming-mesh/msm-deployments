@@ -9,6 +9,7 @@ metadata:
     {{- include "MSM.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
+  clusterIP: 10.96.4.1
   ports:
     - port: 443
       targetPort: 443
@@ -27,6 +28,7 @@ metadata:
     {{- include "MSM.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
+  clusterIP: 10.96.3.1
   ports:
     - name: grpc
       port: 9000
