@@ -11,7 +11,7 @@ spec:
       paths:
       - backend:
           service:
-            name: "{{ .Values.config.appName }}-hls"
+            name: hls-{{ .Values.config.appName }}
             port:
               number: {{ .Values.camera.hlsPort }}
         path: "/{{ .Values.config.appName }}"

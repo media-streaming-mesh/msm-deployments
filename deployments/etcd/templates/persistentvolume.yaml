@@ -1,10 +1,11 @@
----
 kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: local-pv
+  namespace: {{ .Release.Namespace }}
   labels:
     type: local
+    {{- include "MSM.labels" . | nindent 4 }}
 spec:
   storageClassName: local
   capacity:

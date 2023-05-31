@@ -1,9 +1,7 @@
 # change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
-kubernetesDistro: "K8S"
+kubernetesDistro: "K3S"
 
-nodeSelector: "{{ if eq .Values.kubernetesDistro \"K8S\" }}{{ else if eq .Values.kubernetesDistro \"K3S\" }}true{{ end }}"
-
-controllerUrl: "http://10.96.3.1:9000"
+cpUrl: "http://msm-cp:9000"
 
 cniImage:
   name: ghcr.io/media-streaming-mesh/msm-cni
@@ -21,10 +19,10 @@ webhookImage:
   name: ghcr.io/media-streaming-mesh/msm-admission-webhook
   tag: latest
 
-controllerImage:
+controlPlaneImage:
   name: ghcr.io/media-streaming-mesh/msm-cp
-  tag: latest
+  tag: "20230531"
 
 networkControllerImage:
   name: ghcr.io/media-streaming-mesh/msm-nc
-  tag: latest
+  tag: "20230531"

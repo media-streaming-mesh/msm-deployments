@@ -1,35 +1,33 @@
-# webhook
+# etcd-svc
 apiVersion: v1
 kind: Service
 metadata:
-  name: msm-admission-webhook-svc
+  name: etcd-client
   namespace: {{ .Release.Namespace }}
   labels:
-    app: msm-admission-webhook
     {{- include "MSM.labels" . | nindent 4 }}
 spec:
   ports:
-    - name: ssl
-      port: 443
-      targetPort: 443
-  selector:
-    app: msm-admission-webhook
-
----
-#msm-control-plane-svc
-apiVersion: v1
-kind: Service
-metadata:
-  name: msm-cp
-  namespace: {{ .Release.Namespace }}
-  labels:
-    msm: cp
-    {{- include "MSM.labels" . | nindent 4 }}
-spec:
-  ports:
-    - name: grpc
-      port: 9000
-      targetPort: 9000
+    - name: etcd-client
+      port: 2379
       protocol: TCP
+      targetPort: 2379
   selector:
-    msm: cp
+    app: etcd
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: etcd
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "MSM.labels" . | nindent 4 }}
+spec:
+  clusterIP: None
+  ports:
+    - port: 2379
+      name: client
+    - port: 2380
+      name: peer
+  selector:
+    app: etcd

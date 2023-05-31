@@ -137,7 +137,7 @@ spec:
             - name: LOCAL_RTP_PORT
               value: "8000"
             - name: MSM_CONTROL_PLANE
-              value: {{ .Values.controllerUrl }}
+              value: {{ .Values.cpUrl }}
             - name: MSM_NODE_NAME
               valueFrom:
                 fieldRef:
