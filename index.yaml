@@ -2,6 +2,13 @@ apiVersion: v1
 entries:
   camera:
   - apiVersion: v2
+    created: "2023-05-31T18:09:00.670354761Z"
+    digest: d982de09bb5510401b9484034f1699cf9f8dc5a092bd8ea75a983101d76ed5b2
+    name: camera
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/camera-0.2.2/camera-0.2.2.tgz
+    version: 0.2.2
+  - apiVersion: v2
     created: "2023-05-05T17:15:10.985051171Z"
     digest: c8d976c672713a1c4ebf9a9b87f41132a9c5762d803d041831a5af5eadcaf1e3
     name: camera
@@ -50,6 +57,16 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/camera-0.0.2/camera-0.0.2.tgz
     version: 0.0.2
+  etcd:
+  - apiVersion: v2
+    created: "2023-05-31T18:09:00.914163544Z"
+    description: A Helm chart for MSM Deployment
+    digest: 0f6bc8160821c79123af9ce54a76f17ae24ec170726240642df9b2be39e3e756
+    name: etcd
+    type: application
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/etcd-0.0.3/etcd-0.0.3.tgz
+    version: 0.0.3
   ingress:
   - apiVersion: v2
     created: "2023-05-05T17:15:11.162190358Z"
@@ -87,6 +104,16 @@ entries:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/ingress-0.0.3/ingress-0.0.3.tgz
     version: 0.0.3
   msm:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-05-31T18:09:01.136081441Z"
+    description: A Helm chart for MSM Deployment
+    digest: f4a02de85a8f1f5a8332cfb893ec57ef865b84246ad367e5a4acac8ce534f192
+    name: msm
+    type: application
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/msm-0.1.12/msm-0.1.12.tgz
+    version: 0.1.12
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-05-30T20:33:47.303906183Z"
@@ -239,4 +266,4 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/rtsp-0.0.3/rtsp-0.0.3.tgz
     version: 0.0.3
-generated: "2023-05-30T20:33:47.453411486Z"
+generated: "2023-05-31T18:09:01.136384544Z"
