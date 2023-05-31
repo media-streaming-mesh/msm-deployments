@@ -104,13 +104,13 @@ spec:
           ports:
             - name: rtp
               protocol: UDP
-              containerPort: 8050
+              containerPort: {{ .Values.config.rtpPort }}
             - name: rtcp
               protocol: UDP
-              containerPort: 8051
+              containerPort: {{ add .Values.config.rtpPort 1 }}
             - name: grpc
               protocol: TCP
-              containerPort: 9000
+              containerPort: {{ .Values.config.gRPCPort }}
           env:
             - name: LOG_LEVEL
               value: "DEBUG"
@@ -118,11 +118,11 @@ spec:
               value: "JSON"
           readinessProbe:
             exec:
-              command: ["grpc-health-probe", "-addr=:9000"]
+              command: ["grpc-health-probe", "-addr=:{{ .Values.config.gRPCPort }}"]
             initialDelaySeconds: 2
           livenessProbe:
             exec:
-              command: ["grpc-health-probe", "-addr=:9000"]
+              command: ["grpc-health-probe", "-addr=:{{ .Values.config.gRPCPort }}"]
             initialDelaySeconds: 10
         - name: msm-rtsp-stub
           image: "{{ .Values.stubImage.name }}:{{ .Values.stubImage.tag }}"
