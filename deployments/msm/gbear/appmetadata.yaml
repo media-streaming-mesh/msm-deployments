@@ -51,3 +51,18 @@ icon: https://www.mediastreamingmesh.io/assets/shared/logos/logo-dark-horizontal
 #     key: application.textColor
 #     choices: [black, red, blue]                # UI renders the parameter as a dropdown list, containing the specified values.
 #     value: red                                 # Dashboard will display a dropdown list with specified value 'red' as the default
+
+
+#configuration:
+#  - name: rtpPort
+#    title: RTP Port
+#    value: 8050
+#    key: config.rtpPort
+#    type: NodePort
+#    description: Please enter the RTP Port. Leaving it blank will set it on a Default Port 8050
+#  - name: gRPCPort
+#    title: gRPC Port
+#    value: 9000
+#    key: config.gRPCPort
+#    type: NodePort
+#    description: Please enter the gRPC Port. Leaving it blank will set it on a Default Port 9000
