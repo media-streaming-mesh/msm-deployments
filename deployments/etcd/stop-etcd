@@ -1,3 +1,0 @@
-kubectl delete -f etcd.yaml
-kubectl delete pvc data-etcd-0
-kubectl delete pv local-pv

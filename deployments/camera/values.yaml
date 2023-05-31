@@ -1,3 +1,5 @@
+cpUrl: "http://msm-cp:9000"
+
 rtspServer:
   name: ciscolabs/rtsp-server
   tag: latest

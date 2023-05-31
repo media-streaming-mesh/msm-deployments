@@ -20,7 +20,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ .Values.config.appName }}-hls"
+  name: hls-{{ .Values.config.appName }}
   labels:
     app: {{ .Values.config.appName }}
     {{- include "Camera.labels" . | nindent 4 }}

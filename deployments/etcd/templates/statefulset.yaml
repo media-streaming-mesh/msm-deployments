@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: etcd
-          image: quay.io/coreos/etcd:latest
+          image: {{ .Values.etcdImage.name }}:{{ .Values.etcdImage.tag }}
           ports:
             - containerPort: 2379
               name: client
@@ -43,6 +43,8 @@ spec:
                 --initial-cluster ${PEERS} \
                 --initial-cluster-state new \
                 --data-dir /var/run/etcd/default.etcd
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
   volumeClaimTemplates:
     - metadata:
         name: data
@@ -51,4 +53,4 @@ spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
-            storage: 1Gi%
+            storage: 1Gi

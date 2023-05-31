@@ -109,7 +109,7 @@ spec:
         - key: node-role.kubernetes.io/control-plane
           operator: Exists
           effect: NoSchedule
-      serviceAccountName: msm-control-plane-sa
+      serviceAccountName: msm-cp-sa
       containers:
         - name: msm-control-plane
           image: "{{ .Values.controlPlaneImage.name }}:{{ .Values.controlPlaneImage.tag }}"
@@ -131,14 +131,17 @@ metadata:
   name: msm-network-controller
   namespace: {{ .Release.Namespace }}
   labels:
+    msm: cp
     {{- include "MSM.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
+      msm: cp
   template:
     metadata:
       labels:
+        msm: cp
     spec:
       tolerations:
         - key: node-role.kubernetes.io/master
@@ -147,7 +150,7 @@ spec:
         - key: node-role.kubernetes.io/control-plane
           operator: Exists
           effect: NoSchedule
-      serviceAccountName: msm-control-plane-sa
+      serviceAccountName: msm-cp-sa
       containers:
         - name: msm-network-controller
           image: "{{ .Values.networkControllerImage.name }}:{{ .Values.networkControllerImage.tag }}"
