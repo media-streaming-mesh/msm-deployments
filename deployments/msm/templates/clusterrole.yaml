@@ -31,13 +31,13 @@ rules:
       - list
       - watch
 ---
-# controller-prep
+# cp-prep
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: url-handler
   labels:
-    app: msm-controller
+    app: msm-cp
     {{- include "MSM.labels" . | nindent 4 }}
 rules:
   - apiGroups: [""]
@@ -55,7 +55,7 @@ kind: ClusterRole
 metadata:
   name: node-watcher
   labels:
-    app: msm-controller
+    app: msm-cp
     {{- include "MSM.labels" . | nindent 4 }}
 rules:
   - apiGroups: [""]

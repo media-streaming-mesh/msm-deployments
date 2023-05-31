@@ -54,7 +54,7 @@ spec:
             - name: MSM_LOG_LVL
               value: "DEBUG"
             - name: MSM_CONTROL_PLANE
-              value: {{ .Values.controllerUrl }}
+              value: {{ .Values.cpUrl }}
             - name: MY_NODE_NAME
               valueFrom:
                 fieldRef:
@@ -83,24 +83,24 @@ spec:
         node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
 
 ---
-# msm-controller
+# msm-control-plane
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: msm-controller
+  name: msm-control-plane
   namespace: {{ .Release.Namespace }}
   labels:
-    msm: controller
+    msm: cp
     {{- include "MSM.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      msm: controller
+      msm: cp
   template:
     metadata:
       labels:
-        msm: controller
+        msm: cp
     spec:
       tolerations:
         - key: node-role.kubernetes.io/master
@@ -109,10 +109,10 @@ spec:
         - key: node-role.kubernetes.io/control-plane
           operator: Exists
           effect: NoSchedule
-      serviceAccountName: msm-controller-sa
+      serviceAccountName: msm-control-plane-sa
       containers:
-        - name: msm-controller
-          image: "{{ .Values.controllerImage.name }}:{{ .Values.controllerImage.tag }}"
+        - name: msm-control-plane
+          image: "{{ .Values.controlPlaneImage.name }}:{{ .Values.controlPlaneImage.tag }}"
           imagePullPolicy: IfNotPresent
           ports:
             - name: grpc
@@ -131,17 +131,14 @@ metadata:
   name: msm-network-controller
   namespace: {{ .Release.Namespace }}
   labels:
-    msm: controller
     {{- include "MSM.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      msm: controller
   template:
     metadata:
       labels:
-        msm: controller
     spec:
       tolerations:
         - key: node-role.kubernetes.io/master
@@ -150,7 +147,7 @@ spec:
         - key: node-role.kubernetes.io/control-plane
           operator: Exists
           effect: NoSchedule
-      serviceAccountName: msm-controller-sa
+      serviceAccountName: msm-control-plane-sa
       containers:
         - name: msm-network-controller
           image: "{{ .Values.networkControllerImage.name }}:{{ .Values.networkControllerImage.tag }}"

@@ -17,14 +17,14 @@ spec:
     app: msm-admission-webhook
 
 ---
-#msm-controller-svc
+#msm-control-plane-svc
 apiVersion: v1
 kind: Service
 metadata:
-  name: msm-controller
+  name: msm-cp
   namespace: {{ .Release.Namespace }}
   labels:
-    msm: controller
+    msm: cp
     {{- include "MSM.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
@@ -35,4 +35,40 @@ spec:
       targetPort: 9000
       protocol: TCP
   selector:
-    msm: controller
+    msm: cp
+
+---
+# etcd-svc
+apiVersion: v1
+kind: Service
+metadata:
+  name: etcd-client
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "MSM.labels" . | nindent 4 }}
+spec:
+  clusterIP: 10.96.20.1
+  ports:
+    - name: etcd-client
+      port: 2379
+      protocol: TCP
+      targetPort: 2379
+  selector:
+    app: etcd
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: etcd
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "MSM.labels" . | nindent 4 }}
+spec:
+  clusterIP: None
+  ports:
+    - port: 2379
+      name: client
+    - port: 2380
+      name: peer
+  selector:
+    app: etcd
