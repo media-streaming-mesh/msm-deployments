@@ -55,7 +55,7 @@ camera:
 
 config:
   appName: "live-feed"
-  cameraUrl: "rtsp://camera.company.com:8554/s0"
+  cameraUrl: "rtsp://camera.company.com:8554/s1"
 ```
 
 ## Values
@@ -68,12 +68,7 @@ config:
 | rtspClient.tag | string | `"latest"` |  |
 | stubImage.name | string | `"ghcr.io/media-streaming-mesh/msm-rtsp-stub"` |  |
 | stubImage.tag | string | `"latest"` |  |
-| camera.appName | string | `"giles-study"` |  |
-| camera.ingressName | string | `"giles-study"` |  |
-| camera.rtspName | string | `"giles-study"` |  |
-| camera.hlsName | string | `"giles-study-hls"` |  |
 | camera.rtspPort | int | `554` |  |
 | camera.hlsPort | int | `8888` |  |
-| camera.hlsUrl | string | `"/giles-study"` |  |
-| camera.cameraUrl | string | `"rtsp://msm:RUSTsuxr0x@82.36.109.33:8554/s1"` |  |
-| camera.serverUrl | string | `"rtsp://0.0.0.0:554/giles-study"` |  |
+| config.appName | string | `"live-feed"` |  |
+| config.cameraUrl | string | `"rtsp://camera.company.com:8554/s1"` |  |
