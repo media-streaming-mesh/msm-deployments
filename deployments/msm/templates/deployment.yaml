@@ -28,6 +28,16 @@ spec:
         - name: msm-admission-webhook
           image: "{{ .Values.webhookImage.name }}:{{ .Values.webhookImage.tag }}"
           imagePullPolicy: IfNotPresent
+          ports:
+            - protocol: TCP
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /livenessz
+              port: 8080
+            initialDelaySeconds: 1
+            periodSeconds: 3
+            timeoutSeconds: 5
           env:
             - name: REPO
               value: "ciscolabs"
@@ -39,10 +49,12 @@ spec:
               value: "IfNotPresent"
             - name: LOG_LVL
               value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
             - name: MSM_LOG_LVL
               value: "DEBUG"
             - name: MSM_CONTROL_PLANE
-              value: "http://msm-controller:9000"
+              value: {{ .Values.cpUrl }}
             - name: MY_NODE_NAME
               valueFrom:
                 fieldRef:
@@ -71,24 +83,24 @@ spec:
         node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
 
 ---
-# msm-controller
+# msm-control-plane
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: msm-controller
+  name: msm-control-plane
   namespace: {{ .Release.Namespace }}
   labels:
-    msm: controller
+    msm: cp
     {{- include "MSM.labels" . | nindent 4 }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      msm: controller
+      msm: cp
   template:
     metadata:
       labels:
-        msm: controller
+        msm: cp
     spec:
       tolerations:
         - key: node-role.kubernetes.io/master
@@ -97,10 +109,10 @@ spec:
         - key: node-role.kubernetes.io/control-plane
           operator: Exists
           effect: NoSchedule
-      serviceAccountName: msm-controller-sa
+      serviceAccountName: msm-cp-sa
       containers:
-        - name: msm-controller
-          image: "{{ .Values.controllerImage.name }}:{{ .Values.controllerImage.tag }}"
+        - name: msm-control-plane
+          image: "{{ .Values.controlPlaneImage.name }}:{{ .Values.controlPlaneImage.tag }}"
           imagePullPolicy: IfNotPresent
           ports:
             - name: grpc
@@ -109,5 +121,48 @@ spec:
           env:
             - name: LOG_LVL
               value: "TRACE"
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
+---
+# msm-network-controller
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msm-network-controller
+  namespace: {{ .Release.Namespace }}
+  labels:
+    msm: cp
+    {{- include "MSM.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      msm: cp
+  template:
+    metadata:
+      labels:
+        msm: cp
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+          effect: NoSchedule
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      serviceAccountName: msm-cp-sa
+      containers:
+        - name: msm-network-controller
+          image: "{{ .Values.networkControllerImage.name }}:{{ .Values.networkControllerImage.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: grpc
+              protocol: TCP
+              containerPort: 9000
+          env:
+            - name: LOG_LEVEL
+              value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
       nodeSelector:
         node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}

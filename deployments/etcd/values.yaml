@@ -1,0 +1,6 @@
+# change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
+kubernetesDistro: "K3S"
+
+etcdImage:
+  name: quay.io/coreos/etcd
+  tag: latest

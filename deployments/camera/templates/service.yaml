@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.camera.rtspName }}
+  name: {{ .Values.config.appName }}
   labels:
-    app: {{ .Values.camera.appName }}
+    app: {{ .Values.config.appName }}
     {{- include "Camera.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
@@ -14,15 +14,15 @@ spec:
       targetPort: {{ .Values.camera.rtspPort }}
       protocol: TCP
   selector:
-    app: {{ .Values.camera.appName }}
+    app: {{ .Values.config.appName }}
 ---
 # Giles Study Camera HLS 
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Values.camera.hlsName }}
+  name: hls-{{ .Values.config.appName }}
   labels:
-    app: {{ .Values.camera.appName }}
+    app: {{ .Values.config.appName }}
     {{- include "Camera.labels" . | nindent 4 }}
 spec:
   type: ClusterIP
@@ -32,4 +32,4 @@ spec:
       targetPort: {{ .Values.camera.hlsPort }}
       protocol: TCP
   selector:
-    app: {{ .Values.camera.appName }}
+    app: {{ .Values.config.appName }}

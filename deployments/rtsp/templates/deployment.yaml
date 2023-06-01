@@ -1,27 +1,3 @@
-# rtsp-client
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: rtsp-client
-  labels:
-    rtsp: client
-    {{- include "MSM-RTSP.labels" . | nindent 4 }}
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      rtsp: client
-  template:
-    metadata:
-      labels:
-        rtsp: client
-        sidecar.mediastreamingmesh.io/inject: "true"
-    spec:
-      containers:
-        - name: rtsp-client
-          image: "{{ .Values.clientImage.name }}:{{ .Values.clientImage.tag }}"
-          imagePullPolicy: IfNotPresent
----
 # rtsp-server
 apiVersion: apps/v1
 kind: Deployment
@@ -48,7 +24,7 @@ spec:
           image: "{{ .Values.clientImage.name }}:{{ .Values.clientImage.tag }}"
           imagePullPolicy: IfNotPresent
           command: ["ffmpeg"]
-          args: ["-re", "-stream_loop", "-100", "-i", "/tmp/video.mjpeg", "-input_format", "mjpeg", "-an", "-pix_fmt", "yuvj420p", "-vcodec", "mjpeg", "-huffman", "default", "-f", "rtsp", "rtsp://0.0.0.0:554/mystream"]
+          args: ["-re", "-stream_loop", "-1", "-i", "/tmp/video.mp4", "-an", "-c:v", "copy", "-f", "rtsp", "rtsp://0.0.0.0:554/mystream"]
           volumeMounts:
             - mountPath: /tmp
               name: movies
@@ -56,3 +32,27 @@ spec:
         - name: movies
           hostPath:
             path: /tmp
+---
+# rtsp-client
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtsp-client
+  labels:
+    app: client
+    {{- include "MSM-RTSP.labels" . | nindent 4 }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: client
+  template:
+    metadata:
+      labels:
+        app: client
+        sidecar.mediastreamingmesh.io/inject: "true"
+    spec:
+      containers:
+        - name: rtsp-client
+          image: "{{ .Values.clientImage.name }}:{{ .Values.clientImage.tag }}"
+          imagePullPolicy: IfNotPresent

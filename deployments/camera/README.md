@@ -4,10 +4,67 @@
 
 ## TL;DR;
 
+The deployment can run on Kubernetes (K8S) and K3S.
+
+## Getting Started
+
+To get started, clone this repository and navigate to the ```camera``` directory.
+```sh
+git clone https://github.com/media-streaming-mesh/msm-deployments.git
+```
+```sh
+cd msm-deploymnts/deployments/camera
+```
+
+## Directory Structure
+
+The ```camera``` directory contains the following files and folders:
+
+📦camera<br>
+ ┣ 📂gbear<br>
+ ┃ ┗ 📜appmetadata.yaml<br>
+ ┣ 📂templates<br>
+ ┃ ┣ 📜_helpers.tpl<br>
+ ┃ ┣ 📜deployment.yaml<br>
+ ┃ ┣ 📜ingress.yaml<br>
+ ┃ ┗ 📜service.yaml<br>
+ ┣ 📜Chart.yaml<br>
+ ┣ 📜README.md<br>
+ ┗ 📜values.yaml<br>
+
+## Prerequisites
+
+Before deploying the ```camera``` app on the ```MSM``` node, ensure that you have the following prerequisites:
+
+* You will need to have access to a ```Kubernetes cluster```.<br>
+* [Helm](https://helm.sh) must be installed to use these charts. <br>
+* Before deploying ```Camera``` App, ensure <b>```MSM```</b> and <b>```Ingress```</b> Apps are deployed and running.<br><br>
+**Follow the instructions for deploying ```MSM``` and ```Ingress``` apps by following their README in their folders.<br>**
+
+## Install
+
+Before installing the camera app, change the values of the camera fields under values.yaml file as per your needs. <br>
+e.g. <br>
+```sh
+camera:
+  appName: <your_app_name>
+  ingressName: <your_ingress_name>
+  rtspName: <your_app_name>
+  hlsName: <your_hls_service_name>
+  rtspPort: 554
+  hlsPort: 8888
+  hlsUrl: "/<your_app_name>"
+  cameraUrl: "rtsp://<cam_user>:<cam_pass>@<cam_public_IP>:<cam_port>/<stream_name>"
+  serverUrl: "rtsp://0.0.0.0:554/<your_app_name>"
+```
+
+```sh
+helm install <YOUR_APP_NAME> camera/ --values camera/values.yaml
+```
+
 ```bash
 helm repo add msm https://charts.mediastreamingmesh.dev
 helm install --generate-name --wait msm/camera
-```
 
 ## Values
 

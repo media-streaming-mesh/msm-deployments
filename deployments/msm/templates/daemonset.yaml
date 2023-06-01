@@ -59,6 +59,10 @@ spec:
             # Deploy as a standalone CNI plugin or as chained?
             - name: CHAINED_CNI_PLUGIN
               value: "true"
+            - name: LOG_LEVEL
+              value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
           volumeMounts:
             - mountPath: /host/opt/cni/bin
               name: cni-bin-dir
@@ -108,8 +112,18 @@ spec:
               protocol: TCP
               containerPort: 9000
           env:
-            - name: LOG_LVL
+            - name: LOG_LEVEL
               value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
+          readinessProbe:
+            exec:
+              command: ["grpc-health-probe", "-addr=:9000"]
+            initialDelaySeconds: 2
+          livenessProbe:
+            exec:
+              command: ["grpc-health-probe", "-addr=:9000"]
+            initialDelaySeconds: 10
         - name: msm-rtsp-stub
           image: "{{ .Values.stubImage.name }}:{{ .Values.stubImage.tag }}"
           imagePullPolicy: IfNotPresent
@@ -123,7 +137,7 @@ spec:
             - name: LOCAL_RTP_PORT
               value: "8000"
             - name: MSM_CONTROL_PLANE
-              value: {{ .Values.controllerUrl }}
+              value: {{ .Values.cpUrl }}
             - name: MSM_NODE_NAME
               valueFrom:
                 fieldRef:
