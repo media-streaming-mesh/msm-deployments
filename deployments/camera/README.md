@@ -50,15 +50,12 @@ Before deploying the camera app, change the values of the camera fields under va
 e.g. <br>
 ```sh
 camera:
-  appName: <your_app_name>
-  ingressName: <your_ingress_name>
-  rtspName: <your_app_name>
-  hlsName: <your_hls_service_name>
   rtspPort: 554
   hlsPort: 8888
-  hlsUrl: "/<your_app_name>"
-  cameraUrl: "rtsp://<cam_user>:<cam_pass>@<cam_public_IP>:<cam_port>/<stream_name>"
-  serverUrl: "rtsp://0.0.0.0:554/<your_app_name>"
+
+config:
+  appName: "live-feed"
+  cameraUrl: "rtsp://camera.company.com:8554/s0"
 ```
 
 ## Values
