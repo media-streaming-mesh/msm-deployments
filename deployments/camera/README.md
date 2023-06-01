@@ -4,7 +4,13 @@
 
 The deployment can run on Kubernetes (K8S) and K3S.
 
-## Getting Started
+## Install (from charts.mediastreamingmesh.dev)
+
+```bash
+helm repo add msm https://charts.mediastreamingmesh.dev
+helm install --generate-name --wait msm/camera
+```
+## Install (using git clone)
 
 To get started, clone this repository and navigate to the ```camera``` directory.
 ```sh
@@ -12,6 +18,9 @@ git clone https://github.com/media-streaming-mesh/msm-deployments.git
 ```
 ```sh
 cd msm-deploymnts/deployments/camera
+```
+```
+helm install camera ./ --values ./values.yaml
 ```
 
 ## Directory Structure
@@ -39,9 +48,9 @@ Before deploying the ```camera``` app on the ```MSM``` node, ensure that you hav
 * Before deploying ```Camera``` App, ensure <b>```MSM```</b> and <b>```Ingress```</b> Apps are deployed and running.<br><br>
 **Follow the instructions for deploying ```MSM``` and ```Ingress``` apps by following their README in their folders.<br>**
 
-## Install
+## Deploy
 
-Before installing the camera app, change the values of the camera fields under values.yaml file as per your needs. <br>
+Before deploying the camera app, change the values of the camera fields under values.yaml file as per your needs. <br>
 e.g. <br>
 ```sh
 camera:
@@ -54,11 +63,6 @@ camera:
   hlsUrl: "/<your_app_name>"
   cameraUrl: "rtsp://<cam_user>:<cam_pass>@<cam_public_IP>:<cam_port>/<stream_name>"
   serverUrl: "rtsp://0.0.0.0:554/<your_app_name>"
-```
-
-```bash
-helm repo add msm https://charts.mediastreamingmesh.dev
-helm install --generate-name --wait msm/camera
 ```
 
 ## Values
