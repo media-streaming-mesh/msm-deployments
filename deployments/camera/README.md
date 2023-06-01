@@ -2,8 +2,6 @@
 
 ![version: 0.1.2](https://img.shields.io/badge/version-0.1.2-informational?style=flat-square)    [![artifact hub](https://img.shields.io/badge/artifact%20hub-camera-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/camera)
 
-## TL;DR;
-
 The deployment can run on Kubernetes (K8S) and K3S.
 
 ## Getting Started
@@ -58,13 +56,10 @@ camera:
   serverUrl: "rtsp://0.0.0.0:554/<your_app_name>"
 ```
 
-```sh
-helm install <YOUR_APP_NAME> camera/ --values camera/values.yaml
-```
-
 ```bash
 helm repo add msm https://charts.mediastreamingmesh.dev
 helm install --generate-name --wait msm/camera
+```
 
 ## Values
 
