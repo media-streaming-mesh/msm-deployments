@@ -13,13 +13,9 @@ helm install --generate-name --wait msm/camera
 ## Install (using git clone)
 
 To get started, clone this repository and navigate to the ```camera``` directory.
-```sh
+```bash
 git clone https://github.com/media-streaming-mesh/msm-deployments.git
-```
-```sh
-cd msm-deploymnts/deployments/camera
-```
-```
+cd msm-deployments/deployments/camera
 helm install camera ./ --values ./values.yaml
 ```
 
