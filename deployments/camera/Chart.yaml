@@ -1,3 +1,4 @@
 apiVersion: v2
 name: camera
+description: A Helm chart to deploy a camera on MSM
 version: 0.2.3

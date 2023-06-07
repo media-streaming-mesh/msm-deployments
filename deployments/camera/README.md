@@ -1,67 +1,52 @@
 # camera
 
-![version: 0.1.2](https://img.shields.io/badge/version-0.1.2-informational?style=flat-square)    [![artifact hub](https://img.shields.io/badge/artifact%20hub-camera-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/camera)
+![version: 0.2.3](https://img.shields.io/badge/version-0.2.3-informational?style=flat-square)    [![artifact hub](https://img.shields.io/badge/artifact%20hub-camera-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/camera)
 
-The deployment can run on Kubernetes (K8S) and K3S.
+A Helm chart to deploy a camera on MSM
 
-## Install (from charts.mediastreamingmesh.dev)
+## TL;DR;
 
 ```bash
 helm repo add msm https://charts.mediastreamingmesh.dev
 helm install --generate-name --wait msm/camera
 ```
-## Install (using git clone)
-
-To get started, clone this repository and navigate to the ```camera``` directory.
-```bash
-git clone https://github.com/media-streaming-mesh/msm-deployments.git
-cd msm-deployments/deployments/camera
-helm install camera ./ --values ./values.yaml
-```
-
-## Directory Structure
-
-The ```camera``` directory contains the following files and folders:
-
-📦camera<br>
- ┣ 📂gbear<br>
- ┃ ┗ 📜appmetadata.yaml<br>
- ┣ 📂templates<br>
- ┃ ┣ 📜_helpers.tpl<br>
- ┃ ┣ 📜deployment.yaml<br>
- ┃ ┣ 📜ingress.yaml<br>
- ┃ ┗ 📜service.yaml<br>
- ┣ 📜Chart.yaml<br>
- ┣ 📜README.md<br>
- ┗ 📜values.yaml<br>
 
 ## Prerequisites
 
-Before deploying the ```camera``` app on the ```MSM``` node, ensure that you have the following prerequisites:
+Before deploying the camera app on the node, ensure that you have the following prerequisites:
 
-* You will need to have access to a ```Kubernetes cluster```.<br>
-* [Helm](https://helm.sh) must be installed to use these charts. <br>
-* Before deploying ```Camera``` App, ensure <b>```MSM```</b> and <b>```Ingress```</b> Apps are deployed and running.<br><br>
-**Follow the instructions for deploying ```MSM``` and ```Ingress``` apps by following their README in their folders.<br>**
+* You will need to have access to a Kubernetes cluster<br>
+* [Helm](https://helm.sh) must be installed to use these charts<br>
 
-## Deploy
+## Manual Install
 
-Before deploying the camera app, change the values of the camera fields under values.yaml file as per your needs. <br>
-e.g. <br>
+To get started, clone the msm-deployments repository and navigate to the ```camera``` directory.
+
 ```sh
-camera:
-  rtspPort: 554
-  hlsPort: 8888
-
-config:
-  appName: "live-feed"
-  cameraUrl: "rtsp://camera.company.com:8554/s1"
+git clone https://github.com/media-streaming-mesh/msm-deployments.git
+cd msm-deployments/deployments/camera
 ```
+
+Before installing the camera  app onto the node, make sure to change the value ```kubernetesDistro``` under ```values.yaml``` file as per your needs. <br>
+e.g. <br>
+```kubernetesDistro: "K8S"```
+
+```helm install <YOUR_APP_NAME> ./ --values ./values.yaml```
+
+## Usage
+Verify everything is in Running state on your Kubernetes Cluster
+
+```kubectl get pods -A```
+
+or
+
+```kubectl get all```
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| cpUrl | string | `"http://msm-cp:9000"` |  |
 | rtspServer.name | string | `"ciscolabs/rtsp-server"` |  |
 | rtspServer.tag | string | `"latest"` |  |
 | rtspClient.name | string | `"ciscolabs/rtsp-client"` |  |
@@ -70,5 +55,5 @@ config:
 | stubImage.tag | string | `"latest"` |  |
 | camera.rtspPort | int | `554` |  |
 | camera.hlsPort | int | `8888` |  |
-| config.appName | string | `"live-feed"` |  |
-| config.cameraUrl | string | `"rtsp://camera.company.com:8554/s1"` |  |
+| config.appName | string | `""` |  |
+| config.cameraUrl | string | `""` |  |

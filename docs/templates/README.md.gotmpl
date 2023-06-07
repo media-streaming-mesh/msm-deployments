@@ -8,4 +8,35 @@
 
 {{ template "tldr" . }}
 
+## Prerequisites
+
+Before deploying the {{ template "chart.name" . }} app on the node, ensure that you have the following prerequisites:
+
+* You will need to have access to a Kubernetes cluster<br>
+* [Helm](https://helm.sh) must be installed to use these charts<br>
+
+## Manual Install
+
+To get started, clone the msm-deployments repository and navigate to the ```{{ template "chart.name" . }}``` directory.
+
+```sh
+git clone https://github.com/media-streaming-mesh/msm-deployments.git
+cd msm-deployments/deployments/{{ template "chart.name" . }}
+```
+
+Before installing the {{ template "chart.name" . }}  app onto the node, make sure to change the value ```kubernetesDistro``` under ```values.yaml``` file as per your needs. <br>
+e.g. <br>
+```kubernetesDistro: "K8S"```
+
+```helm install <YOUR_APP_NAME> ./ --values ./values.yaml```
+
+## Usage
+Verify everything is in Running state on your Kubernetes Cluster
+
+```kubectl get pods -A```
+
+or
+
+```kubectl get all```
+
 {{ template "chart.valuesSection" . }}

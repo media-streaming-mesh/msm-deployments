@@ -1,74 +1,53 @@
 # msm
 
-![version: 0.1.5](https://img.shields.io/badge/version-0.1.5-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.16.0](https://img.shields.io/badge/app%20version-1.16.0-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-msm-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/msm)
+![version: 0.1.13](https://img.shields.io/badge/version-0.1.13-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.16.0](https://img.shields.io/badge/app%20version-1.16.0-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-msm-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/msm)
 
-This repository contains a Helm chart that deploys the MSM infrastructure.
+A Helm chart for MSM Deployment
 
-The deployment is designed to run on Kubernetes (K8S) and/or K3S.
-
-## Getting Started
-
-To get started, clone the msm-deployments repository and navigate to the ```msm``` directory.
-```sh
-git clone https://github.com/media-streaming-mesh/msm-deployments.git
-```
-```sh
-cd msm-deployments/deployments/msm
-```
-
-## Directory Structure
-
-The ```msm``` directory contains the following files and folders:
-
-📦msm
-┣ 📂gbear<br>
-┃ ┗ 📜appmetadata.yaml<br>
-┣ 📂templates<br>
-┃ ┣ 📜_helpers.tpl<br>
-┃ ┣ 📜clusterrole.yaml<br>
-┃ ┣ 📜clusterrolebinding.yaml<br>
-┃ ┣ 📜configmap.yaml<br>
-┃ ┣ 📜daemonset.yaml<br>
-┃ ┣ 📜deployment.yaml<br>
-┃ ┣ 📜service.yaml<br>
-┃ ┣ 📜serviceaccount.yaml<br>
-┃ ┗ 📜webhook.yaml<br>
-┣ 📜.helmignore<br>
-┣ 📜Chart.yaml<br>
-┣ 📜README.md<br>
-┗ 📜values.yaml<br>
-
-## Prerequisites
-
-Before deploying the ```MSM``` app on the node, ensure that you have the following prerequisites:
-
-* You will need to have access to a ```Kubernetes cluster```.<br>
-* [Helm](https://helm.sh) must be installed to use these charts. <br>
-
-## Install
-
-Before installing the ```msm``` app onto the node, make sure to change the value ```kubernetesDistro``` under ```values.yaml``` file as per your needs. <br>
-e.g. <br>
-```sh
-# change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
-kubernetesDistro: "K8S"
-```
-
-```sh
-helm install <YOUR_APP_NAME> msm/ --values msm/values.yaml
-```
+## TL;DR;
 
 ```bash
 helm repo add msm https://charts.mediastreamingmesh.dev
 helm install --generate-name --wait msm/msm
+```
+
+## Prerequisites
+
+Before deploying the msm app on the node, ensure that you have the following prerequisites:
+
+* You will need to have access to a Kubernetes cluster<br>
+* [Helm](https://helm.sh) must be installed to use these charts<br>
+
+## Manual Install
+
+To get started, clone the msm-deployments repository and navigate to the ```msm``` directory.
+
+```sh
+git clone https://github.com/media-streaming-mesh/msm-deployments.git
+cd msm-deployments/deployments/msm
+```
+
+Before installing the msm  app onto the node, make sure to change the value ```kubernetesDistro``` under ```values.yaml``` file as per your needs. <br>
+e.g. <br>
+```kubernetesDistro: "K8S"```
+
+```helm install <YOUR_APP_NAME> ./ --values ./values.yaml```
+
+## Usage
+Verify everything is in Running state on your Kubernetes Cluster
+
+```kubectl get pods -A```
+
+or
+
+```kubectl get all```
 
 ## Values
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| kubernetesDistro | string | `"K8S"` |  |
-| nodeSelector | string | `"{{ if eq .Values.kubernetesDistro \"K8S\" }}{{ else if eq .Values.kubernetesDistro \"K3S\" }}true{{ end }}"` |  |
-| controllerUrl | string | `"http://msm-controller:9000"` |  |
+| kubernetesDistro | string | `"K3S"` |  |
+| cpUrl | string | `"http://msm-cp:9000"` |  |
 | cniImage.name | string | `"ghcr.io/media-streaming-mesh/msm-cni"` |  |
 | cniImage.tag | string | `"latest"` |  |
 | proxyImage.name | string | `"ghcr.io/media-streaming-mesh/msm-dp"` |  |
@@ -77,5 +56,7 @@ helm install --generate-name --wait msm/msm
 | stubImage.tag | string | `"latest"` |  |
 | webhookImage.name | string | `"ghcr.io/media-streaming-mesh/msm-admission-webhook"` |  |
 | webhookImage.tag | string | `"latest"` |  |
-| controllerImage.name | string | `"ghcr.io/media-streaming-mesh/msm-cp"` |  |
-| controllerImage.tag | string | `"latest"` |  |
+| controlPlaneImage.name | string | `"ghcr.io/media-streaming-mesh/msm-cp"` |  |
+| controlPlaneImage.tag | string | `"latest"` |  |
+| networkControllerImage.name | string | `"ghcr.io/media-streaming-mesh/msm-nc"` |  |
+| networkControllerImage.tag | string | `"latest"` |  |
