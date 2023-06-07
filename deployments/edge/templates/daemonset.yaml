@@ -1,0 +1,160 @@
+# cni
+kind: DaemonSet
+apiVersion: apps/v1
+metadata:
+  name: msm-cni
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: msm-cni
+    {{- include "MSM.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app: msm-cni
+  updateStrategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: msm-cni
+    spec:
+      nodeSelector:
+        kubernetes.io/os: linux
+      hostNetwork: true
+      tolerations:
+        - effect: NoExecute
+          operator: Exists
+      priorityClassName: system-node-critical
+      serviceAccountName: msm-cni
+      # Minimize downtime during a rolling upgrade or deletion; tell Kubernetes to do a "force
+      # deletion": https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods.
+      terminationGracePeriodSeconds: 5
+      containers:
+        # This container installs the MSM CNI binaries
+        # and CNI network config file on each node.
+        - name: installer
+          image: "{{ .Values.cniImage.name }}:{{ .Values.cniImage.tag }}"
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8000
+          command: ["installer"]
+          env:
+            # The CNI network config to install on each node.
+            - name: CNI_NETWORK_CONFIG
+              valueFrom:
+                configMapKeyRef:
+                  name: msm-cni-config
+                  key: cni_network_config
+            - name: CNI_NET_DIR
+              value: /etc/cni/net.d
+            # Deploy as a standalone CNI plugin or as chained?
+            - name: CHAINED_CNI_PLUGIN
+              value: "true"
+            - name: LOG_LEVEL
+              value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
+          volumeMounts:
+            - mountPath: /host/opt/cni/bin
+              name: cni-bin-dir
+            - mountPath: /host/etc/cni/net.d
+              name: cni-net-dir
+      volumes:
+        # Used to install CNI.
+        - name: cni-bin-dir
+          hostPath:
+            path: /opt/cni/bin
+        - name: cni-net-dir
+          hostPath:
+            path: /etc/cni/net.d
+---
+# msm-gateway
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: msm-gateway
+  namespace: {{ .Release.Namespace }}
+  labels:
+    msm: gateway
+    {{- include "MSM.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      msm: gateway
+  template:
+    metadata:
+      labels:
+        msm: gateway
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      containers:
+        - name: msm-proxy
+          image: "{{ .Values.proxyImage.name }}:{{ .Values.proxyImage.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: rtp
+              protocol: UDP
+              containerPort: 8050
+            - name: rtcp
+              protocol: UDP
+              containerPort: 8051
+            - name: grpc
+              protocol: TCP
+              containerPort: 9000
+          env:
+            - name: LOG_LEVEL
+              value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
+          readinessProbe:
+            exec:
+              command: ["grpc-health-probe", "-addr=:9000"]
+            initialDelaySeconds: 2
+          livenessProbe:
+            exec:
+              command: ["grpc-health-probe", "-addr=:9000"]
+            initialDelaySeconds: 10
+        - name: msm-rtsp-stub
+          image: "{{ .Values.stubImage.name }}:{{ .Values.stubImage.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: rtsp
+              protocol: TCP
+              containerPort: 8554
+          env:
+            - name: MSM_LOG_LVL
+              value: "DEBUG"
+            - name: LOCAL_RTP_PORT
+              value: "8000"
+            - name: MSM_CONTROL_PLANE
+              value: {{ .Values.cpUrl }}
+            - name: MSM_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: MSM_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MSM_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: MSM_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: MSM_POD_SERVICE_ACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName

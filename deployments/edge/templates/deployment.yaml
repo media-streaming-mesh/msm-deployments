@@ -1,0 +1,83 @@
+# webhook
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msm-admission-webhook
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: msm-admission-webhook
+    {{- include "MSM.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      app: msm-admission-webhook
+  template:
+    metadata:
+      labels:
+        app: msm-admission-webhook
+    spec:
+      tolerations:
+        - key: node-role.kubernetes.io/master
+          operator: Exists
+          effect: NoSchedule
+        - key: node-role.kubernetes.io/control-plane
+          operator: Exists
+          effect: NoSchedule
+      serviceAccount: msm-admission-webhook-sa
+      containers:
+        - name: msm-admission-webhook
+          image: "{{ .Values.webhookImage.name }}:{{ .Values.webhookImage.tag }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - protocol: TCP
+              containerPort: 8080
+          livenessProbe:
+            httpGet:
+              path: /livenessz
+              port: 8080
+            initialDelaySeconds: 1
+            periodSeconds: 3
+            timeoutSeconds: 5
+          env:
+            - name: REPO
+              value: "ciscolabs"
+            - name: TAG
+              value: "latest"
+            - name: MSM_SIDECAR
+              value: "msm-rtsp-stub"
+            - name: IMAGE_PULL_POLICY
+              value: "IfNotPresent"
+            - name: LOG_LVL
+              value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
+            - name: MSM_LOG_LVL
+              value: "DEBUG"
+            - name: MSM_CONTROL_PLANE
+              value: {{ .Values.cpUrl }}
+            - name: MY_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: MY_POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: MY_POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
+            - name: MY_POD_SERVICE_ACCOUNT
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.serviceAccountName
+            - name: IGNORED_NAMESPACE
+              value: {{ "ingress-nginx" }}
+            - name: WEBHOOK_CONFIG_NAME
+              value: msm-admission-webhook-{{ .Release.Namespace }}
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
