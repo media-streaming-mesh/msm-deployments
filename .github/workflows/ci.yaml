@@ -31,11 +31,11 @@ jobs:
       - name: Lint
         run: ct lint --config ct.yaml
 
-      # - name: Check generated docs
-      #   run: |
-      #     make docs
-      #     test "$(git diff --name-only)" == "" \
-      #     || ( printf >&2 "\nREADME files are not up to date (run 'make docs'), differences:\n\n%s\n\n" "$(git diff)" ; exit 1 ; )
+      - name: Check generated docs
+        run: |
+          make docs
+          test "$(git diff --name-only)" == "" \
+          || ( printf >&2 "\nREADME files are not up to date (run 'make docs'), differences:\n\n%s\n\n" "$(git diff)" ; exit 1 ; )
 
       - name: Detect changes
         id: changes
