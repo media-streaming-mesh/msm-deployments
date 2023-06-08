@@ -16,3 +16,5 @@
 
 # Goland specific directories
 .idea/
+
+/bin/

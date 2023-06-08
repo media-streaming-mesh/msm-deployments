@@ -1,89 +1,53 @@
-<h1 align="center">Nginx ingress deployment on MSM</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
-  <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">
-    <img alt="License: Apache License, Version 2.0" src="https://img.shields.io/badge/License-Apache License, Version 2.0-yellow.svg" />
-  </a>
-</p>
+# ingress
 
-This repository contains files necessary to deploy an nginx ingress for HLS (HTTP Live Streaming) on top of Media Streaming Mesh (MSM). 
+![version: 0.1.7](https://img.shields.io/badge/version-0.1.7-informational?style=flat-square) [![artifact hub](https://img.shields.io/badge/artifact%20hub-ingress-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/ingress)
 
-The deployment can run on Kubernetes (K8S) and K3S.
+A Helm chart to deploy an ingress for MSM
 
-## Getting Started
+## TL;DR;
 
-To get started, clone this repository and navigate to the ```ingress``` directory.
-```sh
-git clone https://github.com/media-streaming-mesh/msm-deployments.git
+```bash
+helm repo add msm https://charts.mediastreamingmesh.dev
+helm install --generate-name --wait msm/ingress
 ```
-```sh
-cd msm-deployments/deployments/ingress
-```
-
-## Directory Structure
-
-The ```ingress``` directory contains the following files and folders:
-
-📦ingress<br>
- ┣ 📂gbear<br>
- ┃ ┗ 📜appmetadata.yaml<br>
- ┣ 📂templates<br>
- ┃ ┣ 📜_helpers.tpl<br>
- ┃ ┣ 📜clusterrole.yaml<br>
- ┃ ┣ 📜clusterrolebinding.yaml<br>
- ┃ ┣ 📜configmap.yaml<br>
- ┃ ┣ 📜daemonset.yaml<br>
- ┃ ┣ 📜ingressclass.yaml<br>
- ┃ ┣ 📜job.yaml<br>
- ┃ ┣ 📜role.yaml<br>
- ┃ ┣ 📜rolebinding.yaml<br>
- ┃ ┣ 📜service.yaml<br>
- ┃ ┣ 📜serviceaccount.yaml<br>
- ┃ ┗ 📜validatingwebhookconfiguration.yaml<br>
- ┣ 📜Chart.yaml<br>
- ┣ 📜README.md<br>
- ┗ 📜values.yaml<br>
 
 ## Prerequisites
 
-Before deploying the ```ingress``` app on the ```MSM``` node, ensure that you have the following prerequisites:
+Before deploying the ingress app on the node, ensure that you have the following prerequisites:
 
-* You will need to have access to a ```Kubernetes cluster```.<br>
-* [Helm](https://helm.sh) must be installed to use these charts. <br>
-* Before deploying ```ingress``` App, ensure <b>```MSM```</b> App is deployed and running.<br><br>
-**Follow the instructions for deploying ```MSM``` app by following its README in its folder.<br>**
+- You will need to have access to a Kubernetes cluster<br>
+- [Helm](https://helm.sh) must be installed to use these charts<br>
 
-## Install
+## Manual Install
+
+To get started, clone the msm-deployments repository and navigate to the `ingress` directory.
 
 ```sh
-helm install <YOUR_APP_NAME> ingress/ --values ingress/values.yaml
+git clone https://github.com/media-streaming-mesh/msm-deployments.git
+cd msm-deployments/deployments/ingress
 ```
 
-## Usage
-Verify everything is in Running state on your Kubernetes Cluster 
+Before installing the ingress app onto the node, make sure to change the value `kubernetesDistro` under `values.yaml` file as per your needs. <br>
+e.g. <br>
+`kubernetesDistro: "K8S"`
 
-```kubectl get pods -A```
+`helm install <YOUR_APP_NAME> ./ --values ./values.yaml`
+
+## Usage
+
+Verify everything is in Running state on your Kubernetes Cluster
+
+`kubectl get pods -A`
 
 or
 
-```kubectl get all```
+`kubectl get all`
 
-## Contributing
+## Values
 
-We welcome contributions to this repository. If you would like to contribute to this repository, please follow these guidelines:
-
-* Fork the repository and make your changes on a new branch.
-
-* Submit a pull request with your changes, and include a detailed description of the changes you made.
-
-* Follow the repository's code style and formatting guidelines.
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
-## 📝 License
-
-The MSM Ingress App/Deployments are under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
-
-***
+| Key                  | Type   | Default                                                                                                              | Description |
+| -------------------- | ------ | -------------------------------------------------------------------------------------------------------------------- | ----------- |
+| controllerImage.name | string | `"registry.k8s.io/ingress-nginx/controller"`                                                                         |             |
+| controllerImage.tag  | string | `"v1.7.0@sha256:7612338342a1e7b8090bef78f2a04fffcadd548ccaabe8a47bf7758ff549a5f7"`                                   |             |
+| certgenImage.name    | string | `"registry.k8s.io/ingress-nginx/kube-webhook-certgen"`                                                               |             |
+| certgenImage.tag     | string | `"v20230312-helm-chart-4.5.2-28-g66a760794@sha256:01d181618f270f2a96c04006f33b2699ad3ccb02da48d0f89b22abce084b292f"` |             |

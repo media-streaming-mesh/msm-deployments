@@ -21,8 +21,8 @@ webhookImage:
 
 controlPlaneImage:
   name: ghcr.io/media-streaming-mesh/msm-cp
-  tag: "20230531"
+  tag: latest
 
 networkControllerImage:
   name: ghcr.io/media-streaming-mesh/msm-nc
-  tag: "20230531"
+  tag: latest
