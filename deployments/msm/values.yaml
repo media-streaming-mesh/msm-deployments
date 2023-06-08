@@ -26,3 +26,7 @@ controlPlaneImage:
 networkControllerImage:
   name: ghcr.io/media-streaming-mesh/msm-nc
   tag: latest
+
+config:
+  rtpPort: 8050
+  gRPCPort: 9000
