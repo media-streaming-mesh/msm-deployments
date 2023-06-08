@@ -30,4 +30,3 @@ networkControllerImage:
 config:
   rtpPort: 8050
   gRPCPort: 9000
-
