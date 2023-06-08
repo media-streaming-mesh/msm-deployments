@@ -4,12 +4,16 @@
 
 A Helm chart to deploy etcd for MSM
 
-## TL;DR;
+[//]: # (## TL;DR;)
 
-```bash
-helm repo add msm https://charts.mediastreamingmesh.dev
-helm install --generate-name --wait msm/etcd
-```
+[//]: # ()
+[//]: # (```bash)
+
+[//]: # (helm repo add msm https://charts.mediastreamingmesh.dev)
+
+[//]: # (helm install --generate-name --wait msm/etcd)
+
+[//]: # (```)
 
 ## Prerequisites
 
