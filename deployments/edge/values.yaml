@@ -1,8 +1,6 @@
 # change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
 kubernetesDistro: "K3S"
 
-cpUrl: "http://msm-cp:9000"
-
 cniImage:
   name: ghcr.io/media-streaming-mesh/msm-cni
   tag: latest
@@ -18,3 +16,6 @@ stubImage:
 webhookImage:
   name: ghcr.io/media-streaming-mesh/msm-admission-webhook
   tag: latest
+
+config:
+  cpUrl: ""

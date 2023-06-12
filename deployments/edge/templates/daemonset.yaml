@@ -133,11 +133,11 @@ spec:
               containerPort: 8554
           env:
             - name: MSM_LOG_LVL
-              value: "DEBUG"
+              value: "TRACE"
             - name: LOCAL_RTP_PORT
               value: "8000"
             - name: MSM_CONTROL_PLANE
-              value: {{ .Values.cpUrl }}
+              value: {{ .Values.config.cpUrl }}
             - name: MSM_NODE_NAME
               valueFrom:
                 fieldRef:

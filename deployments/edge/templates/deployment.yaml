@@ -54,7 +54,7 @@ spec:
             - name: MSM_LOG_LVL
               value: "DEBUG"
             - name: MSM_CONTROL_PLANE
-              value: {{ .Values.cpUrl }}
+              value: {{ .Values.config.cpUrl }}
             - name: MY_NODE_NAME
               valueFrom:
                 fieldRef:
