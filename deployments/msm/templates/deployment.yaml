@@ -42,9 +42,9 @@ spec:
             - name: REPO
               value: "ghcr.io/media-streaming-mesh"
             - name: TAG
-              value: {{ .Values.stubImage.tag }}
+              value: "{{ .Values.stubImage.tag }}"
             - name: MSM_SIDECAR
-              value: {{ .Values.stubImage.name }}
+              value: "msm-rtsp-stub"
             - name: IMAGE_PULL_POLICY
               value: "IfNotPresent"
             - name: LOG_LVL
