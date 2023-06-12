@@ -40,11 +40,11 @@ spec:
             timeoutSeconds: 5
           env:
             - name: REPO
-              value: "ciscolabs"
+              value: "ghcr.io/media-streaming-mesh"
             - name: TAG
-              value: "latest"
+              value: {{ .Values.stubImage.tag }}
             - name: MSM_SIDECAR
-              value: "msm-rtsp-stub"
+              value: {{ .Values.stubImage.name }}
             - name: IMAGE_PULL_POLICY
               value: "IfNotPresent"
             - name: LOG_LVL
