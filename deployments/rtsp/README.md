@@ -46,7 +46,7 @@ or
 ## Values
 
 | Key              | Type   | Default                                        | Description |
-| ---------------- | ------ | ---------------------------------------------- | ----------- |
+|------------------|--------|------------------------------------------------|-------------|
 | clientImage.name | string | `"ciscolabs/rtsp-client"`                      |             |
 | clientImage.tag  | string | `"latest"`                                     |             |
 | serverImage.name | string | `"ciscolabs/rtsp-server"`                      |             |

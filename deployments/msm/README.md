@@ -46,7 +46,7 @@ or
 ## Values
 
 | Key                         | Type   | Default                                                | Description |
-| --------------------------- | ------ | ------------------------------------------------------ | ----------- |
+|-----------------------------|--------|--------------------------------------------------------|-------------|
 | kubernetesDistro            | string | `"K3S"`                                                |             |
 | cpUrl                       | string | `"http://msm-cp:9000"`                                 |             |
 | cniImage.name               | string | `"ghcr.io/media-streaming-mesh/msm-cni"`               |             |

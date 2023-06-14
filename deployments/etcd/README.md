@@ -50,7 +50,7 @@ or
 ## Values
 
 | Key              | Type   | Default                 | Description |
-| ---------------- | ------ | ----------------------- | ----------- |
+|------------------|--------|-------------------------|-------------|
 | kubernetesDistro | string | `"K3S"`                 |             |
 | etcdImage.name   | string | `"quay.io/coreos/etcd"` |             |
 | etcdImage.tag    | string | `"latest"`              |             |

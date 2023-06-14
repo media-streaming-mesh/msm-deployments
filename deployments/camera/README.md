@@ -46,7 +46,7 @@ or
 ## Values
 
 | Key              | Type   | Default                                        | Description |
-| ---------------- | ------ | ---------------------------------------------- | ----------- |
+|------------------|--------|------------------------------------------------|-------------|
 | cpUrl            | string | `"http://msm-cp:9000"`                         |             |
 | rtspServer.name  | string | `"ciscolabs/rtsp-server"`                      |             |
 | rtspServer.tag   | string | `"latest"`                                     |             |
