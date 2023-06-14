@@ -60,9 +60,9 @@ spec:
             - name: CHAINED_CNI_PLUGIN
               value: "true"
             - name: LOG_LEVEL
-              value: "DEBUG"
+              value: {{ .Values.config.logLevel }}
             - name: LOG_TYPE
-              value: "JSON"
+              value: {{ .Values.config.logFormat }}
           volumeMounts:
             - mountPath: /host/opt/cni/bin
               name: cni-bin-dir
@@ -113,9 +113,9 @@ spec:
               containerPort: {{ .Values.config.gRPCPort }}
           env:
             - name: LOG_LEVEL
-              value: "DEBUG"
+              value: {{ .Values.config.logLevel }}
             - name: LOG_TYPE
-              value: "JSON"
+              value: {{ .Values.config.logFormat }}
           readinessProbe:
             exec:
               command: ["grpc-health-probe", "-addr=:{{ .Values.config.gRPCPort }}"]
@@ -133,7 +133,7 @@ spec:
               containerPort: 8554
           env:
             - name: MSM_LOG_LVL
-              value: "DEBUG"
+              value: {{ .Values.config.logLevel }}
             - name: LOCAL_RTP_PORT
               value: "8000"
             - name: MSM_CONTROL_PLANE

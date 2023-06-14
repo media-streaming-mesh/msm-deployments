@@ -48,11 +48,11 @@ spec:
             - name: IMAGE_PULL_POLICY
               value: "IfNotPresent"
             - name: LOG_LVL
-              value: "DEBUG"
+              value: {{ .Values.config.logLevel }}
             - name: LOG_TYPE
-              value: "JSON"
+              value: {{ .Values.config.logFormat }}
             - name: MSM_LOG_LVL
-              value: "DEBUG"
+              value: {{ .Values.config.logLevel }}
             - name: MSM_CONTROL_PLANE
               value: {{ .Values.cpUrl }}
             - name: MY_NODE_NAME
@@ -120,7 +120,7 @@ spec:
               containerPort: {{ .Values.config.gRPCPort }}
           env:
             - name: LOG_LVL
-              value: "TRACE"
+              value: {{ .Values.config.logLevel }}
       nodeSelector:
         node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
 ---
@@ -161,8 +161,8 @@ spec:
               containerPort: {{ .Values.config.gRPCPort }}
           env:
             - name: LOG_LEVEL
-              value: "DEBUG"
+              value: {{ .Values.config.logLevel }}
             - name: LOG_TYPE
-              value: "JSON"
+              value: {{ .Values.config.logFormat }}
       nodeSelector:
         node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}

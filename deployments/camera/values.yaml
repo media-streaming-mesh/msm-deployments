@@ -19,3 +19,4 @@ camera:
 config:
   appName: ""
   cameraUrl: ""
+  logLevel: ""

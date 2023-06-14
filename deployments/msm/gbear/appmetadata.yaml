@@ -66,3 +66,15 @@ icon: https://www.mediastreamingmesh.io/assets/shared/logos/logo-dark-horizontal
 #    key: config.gRPCPort
 #    type: NodePort
 #    description: Please enter the gRPC Port. Leaving it blank will set it on a Default Port 9000
+
+configuration:
+  - name: logLevel
+    title: Log Level
+    value: DEBUG
+    key: config.logLevel
+    type: String
+  - name: logFormat
+    title: Log Format
+    value: JSON
+    key: config.logFormat
+    type: String
