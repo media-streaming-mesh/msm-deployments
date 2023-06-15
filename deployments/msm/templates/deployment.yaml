@@ -119,8 +119,10 @@ spec:
               protocol: TCP
               containerPort: {{ .Values.config.gRPCPort }}
           env:
-            - name: LOG_LVL
-              value: "TRACE"
+            - name: LOG_LEVEL
+              value: "DEBUG"
+            - name: LOG_TYPE
+              value: "JSON"
       nodeSelector:
         node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
 ---
