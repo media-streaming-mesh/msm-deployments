@@ -17,5 +17,6 @@ camera:
   hlsPort: 8888
 
 config:
+  msmLogLvl: ""
   appName: ""
   cameraUrl: ""

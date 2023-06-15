@@ -29,7 +29,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: MSM_LOG_LVL
-              value: "DEBUG"
+              value: {{ .Values.config.msmLogLvl }}
             - name: MSM_CONTROL_PLANE
               value: {{ .Values.cpUrl }}
             - name: MSM_NODE_NAME
