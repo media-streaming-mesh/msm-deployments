@@ -45,6 +45,4 @@ helm install --generate-name --wait msm/{{ .Name }}
 
 {{- define "chart.base" -}}
 {{ template "chart.baseHead" . }}
-
-{{ template "chart.valuesSection" . }}
 {{- end -}}

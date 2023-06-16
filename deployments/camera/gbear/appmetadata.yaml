@@ -34,3 +34,8 @@ configuration:
     value: Your Camera URL e.g rtsp://admin:password@CAMERA_IP:RTSP_PORT/CAMERA_STREAM_NAME
     key: config.cameraUrl
     type: String
+  - name: logLevel
+    title: Log Level
+    value: DEBUG
+    key: config.logLevel
+    type: String

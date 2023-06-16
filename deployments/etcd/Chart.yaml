@@ -2,4 +2,4 @@ apiVersion: v2
 name: etcd
 description: A Helm chart to deploy etcd for MSM
 type: application
-version: 0.0.4
+version: 0.0.5

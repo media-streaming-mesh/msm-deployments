@@ -1,4 +1,4 @@
 apiVersion: v2
 name: ingress
 description: A Helm chart to deploy an ingress for MSM
-version: 0.1.7
+version: 0.1.8
