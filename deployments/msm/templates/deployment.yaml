@@ -119,8 +119,10 @@ spec:
               protocol: TCP
               containerPort: {{ .Values.config.gRPCPort }}
           env:
-            - name: LOG_LVL
+            - name: LOG_LEVEL
               value: {{ .Values.config.logLevel }}
+            - name: LOG_TYPE
+              value: {{ .Values.config.logFormat }}
       nodeSelector:
         node-role.kubernetes.io/control-plane: {{ if eq .Values.kubernetesDistro "K8S" }}""{{ else }}"true"{{ end }}
 ---
