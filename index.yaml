@@ -2,6 +2,14 @@ apiVersion: v1
 entries:
   camera:
   - apiVersion: v2
+    created: "2023-06-26T17:53:45.692598422Z"
+    description: A Helm chart to deploy a camera on MSM
+    digest: 1ec9f7417fb725075c8f21aff204375dd59d0c8c7283bed53a71eddf6ba5499c
+    name: camera
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/camera-0.2.5/camera-0.2.5.tgz
+    version: 0.2.5
+  - apiVersion: v2
     created: "2023-06-16T17:50:49.349755234Z"
     description: A Helm chart to deploy a camera on MSM
     digest: bd9066323e3a36157dec7e7dc6677eb662bdb277fb26f4747d30aa34ef4dab4b
@@ -328,6 +336,16 @@ entries:
   rtsp:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-06-26T17:53:45.860779603Z"
+    description: A Helm chart for RSTP Server and (Internal) Client
+    digest: e1a6180181851a894045990a7448c08e114a4db432ec380cdb31918b469576c2
+    name: rtsp
+    type: application
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/rtsp-0.0.14/rtsp-0.0.14.tgz
+    version: 0.0.14
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-06-16T17:50:50.219895942Z"
     description: A Helm chart for RSTP Server and (Internal) Client
     digest: 8ec8713315bddc33de8d53baa8ff356270ea93946809675c751ba42920f79efc
@@ -376,4 +394,4 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/rtsp-0.0.3/rtsp-0.0.3.tgz
     version: 0.0.3
-generated: "2023-06-16T17:50:50.220257957Z"
+generated: "2023-06-26T17:53:45.860891704Z"
