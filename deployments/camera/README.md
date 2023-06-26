@@ -1,6 +1,6 @@
 # camera
 
-![version: 0.2.4](https://img.shields.io/badge/version-0.2.4-informational?style=flat-square)    [![artifact hub](https://img.shields.io/badge/artifact%20hub-camera-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/camera)
+![version: 0.2.5](https://img.shields.io/badge/version-0.2.5-informational?style=flat-square)    [![artifact hub](https://img.shields.io/badge/artifact%20hub-camera-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/camera)
 
 A Helm chart to deploy a camera on MSM
 
