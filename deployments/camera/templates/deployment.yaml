@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: msm-live
+  name: {{ .Values.config.appName }}
   labels:
     {{- include "Camera.labels" . | nindent 4 }}
     app: {{ .Values.config.appName }}
