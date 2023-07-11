@@ -53,28 +53,3 @@ icon: https://www.mediastreamingmesh.io/assets/shared/logos/logo-dark-horizontal
 #     value: red                                 # Dashboard will display a dropdown list with specified value 'red' as the default
 
 
-#configuration:
-#  - name: rtpPort
-#    title: RTP Port
-#    value: 8050
-#    key: config.rtpPort
-#    type: NodePort
-#    description: Please enter the RTP Port. Leaving it blank will set it on a Default Port 8050
-#  - name: gRPCPort
-#    title: gRPC Port
-#    value: 9000
-#    key: config.gRPCPort
-#    type: NodePort
-#    description: Please enter the gRPC Port. Leaving it blank will set it on a Default Port 9000
-
-configuration:
-  - name: logLevel
-    title: Log Level
-    value: DEBUG
-    key: config.logLevel
-    type: String
-  - name: logFormat
-    title: Log Format
-    value: JSON
-    key: config.logFormat
-    type: String
