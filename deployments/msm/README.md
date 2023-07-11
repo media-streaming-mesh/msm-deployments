@@ -1,6 +1,6 @@
 # msm
 
-![version: 0.1.16](https://img.shields.io/badge/version-0.1.16-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.16.0](https://img.shields.io/badge/app%20version-1.16.0-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-msm-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/msm)
+![version: 0.1.17](https://img.shields.io/badge/version-0.1.17-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 1.16.0](https://img.shields.io/badge/app%20version-1.16.0-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-msm-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/msm)
 
 A Helm chart for MSM Deployment
 
@@ -46,7 +46,7 @@ or
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| kubernetesDistro | string | `"K3S"` |  |
+| kubernetesDistro | string | `"K8S"` |  |
 | cpUrl | string | `"http://msm-cp:9000"` |  |
 | cniImage.name | string | `"ghcr.io/media-streaming-mesh/msm-cni"` |  |
 | cniImage.tag | string | `"latest"` |  |

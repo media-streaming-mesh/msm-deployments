@@ -1,0 +1,93 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: streamdata.mediastreams.media-streaming-mesh.io
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.11.3
+  labels:
+  {{- include "msm.labels" . | nindent 4 }}
+spec:
+  group: mediastreams.media-streaming-mesh.io
+  names:
+    kind: Streamdata
+    listKind: StreamdataList
+    plural: streamdata
+    singular: streamdata
+  scope: Namespaced
+  versions:
+  - name: v1
+    schema:
+      openAPIV3Schema:
+        description: Streamdata is the Schema for the streamdata API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: StreamdataSpec defines the desired state of Streamdata
+            properties:
+              clientip:
+                type: string
+              clientport:
+                description: The port that used by the client
+                maximum: 65535
+                minimum: 0
+                type: integer
+              serverip:
+                type: string
+              serverport:
+                description: The port that used by the server.
+                maximum: 65535
+                minimum: 0
+                type: integer
+              streamstate:
+                description: The stream state set my the controlplane
+                enum:
+                - create
+                - play
+                - teardown
+                type: string
+              stubip:
+                type: string
+            type: object
+          status:
+            description: StreamdataStatus defines the observed state of Streamdata
+            properties:
+              reason:
+                description: If in error the most recent error will be shown
+                type: string
+              status:
+                description: The current state of this stream
+                enum:
+                - PENDING
+                - SUCCESS
+                - ERROR
+                type: string
+              streamstatus:
+                description: The current dataplane status as determined by this module
+                enum:
+                - PENDING
+                - SUCCESS
+                - ERROR
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
