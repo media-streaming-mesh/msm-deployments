@@ -1,12 +1,12 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ include "MSM-CRDs.fullname" . }}-metrics-reader
+  name: {{ include "msm.fullname" . }}-metrics-reader
   labels:
     app.kubernetes.io/component: kube-rbac-proxy
     app.kubernetes.io/created-by: msm-nc
     app.kubernetes.io/part-of: msm-nc
-  {{- include "MSM-CRDs.labels" . | nindent 4 }}
+  {{- include "msm.labels" . | nindent 4 }}
 rules:
 - nonResourceURLs:
   - /metrics

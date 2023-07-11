@@ -1,6 +1,6 @@
 apiVersion: v2
-name: MSM-CRDs
-description: A Helm chart for MSM-CRDs
+name: msm-crds
+description: A Helm chart for msm-crds
 # A chart can be either an 'application' or a 'library' chart.
 #
 # Application charts are a collection of templates that can be packaged into versioned archives

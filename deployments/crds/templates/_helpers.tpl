@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "MSM-CRDs.name" -}}
+{{- define "msm.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "MSM-CRDs.fullname" -}}
+{{- define "msm.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "MSM-CRDs.chart" -}}
+{{- define "msm.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "MSM-CRDs.labels" -}}
-helm.sh/chart: {{ include "MSM-CRDs.chart" . }}
-{{ include "MSM-CRDs.selectorLabels" . }}
+{{- define "msm.labels" -}}
+helm.sh/chart: {{ include "msm.chart" . }}
+{{ include "msm.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,7 +45,18 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "MSM-CRDs.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "MSM-CRDs.name" . }}
+{{- define "msm.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "msm.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{/*
+Create the name of the service account to use
+*/}}
+{{- define "msm.serviceAccountName" -}}
+{{- if .Values.serviceAccount.create }}
+{{- default (include "msm.fullname" .) .Values.serviceAccount.name }}
+{{- else }}
+{{- default "default" .Values.serviceAccount.name }}
+{{- end }}
 {{- end }}

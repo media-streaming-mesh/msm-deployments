@@ -5,7 +5,7 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.11.3
   labels:
-  {{- include "MSM-CRDs.labels" . | nindent 4 }}
+  {{- include "msm.labels" . | nindent 4 }}
 spec:
   group: mediastreams.media-streaming-mesh.io
   names:
