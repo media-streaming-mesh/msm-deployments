@@ -1,33 +1,33 @@
-# msm-crds
+# crds
 
-![version: 0.1.0](https://img.shields.io/badge/version-0.1.0-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 0.1.0](https://img.shields.io/badge/app%20version-0.1.0-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-msm--crds-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/msm-crds)
+![version: 0.0.1](https://img.shields.io/badge/version-0.0.1-informational?style=flat-square) ![type: application](https://img.shields.io/badge/type-application-informational?style=flat-square) ![app version: 0.0.1](https://img.shields.io/badge/app%20version-0.0.1-informational?style=flat-square)  [![artifact hub](https://img.shields.io/badge/artifact%20hub-crds-informational?style=flat-square)](https://artifacthub.io/packages/helm/media-streaming-mesh/crds)
 
-A Helm chart for msm-crds
+A Helm chart for msm-crd
 
 ## TL;DR;
 
 ```bash
 helm repo add msm https://charts.mediastreamingmesh.dev
-helm install --generate-name --wait msm/msm-crds
+helm install --generate-name --wait msm/crds
 ```
 
 ## Prerequisites
 
-Before deploying the msm-crds app on the node, ensure that you have the following prerequisites:
+Before deploying the crds app on the node, ensure that you have the following prerequisites:
 
 * You will need to have access to a Kubernetes cluster<br>
 * [Helm](https://helm.sh) must be installed to use these charts<br>
 
 ## Manual Install
 
-To get started, clone the msm-deployments repository and navigate to the ```msm-crds``` directory.
+To get started, clone the msm-deployments repository and navigate to the ```crds``` directory.
 
 ```sh
 git clone https://github.com/media-streaming-mesh/msm-deployments.git
-cd msm-deployments/deployments/msm-crds
+cd msm-deployments/deployments/crds
 ```
 
-Before installing the msm-crds  app onto the node, make sure to change the value ```kubernetesDistro``` under ```values.yaml``` file as per your needs. <br>
+Before installing the crds  app onto the node, make sure to change the value ```kubernetesDistro``` under ```values.yaml``` file as per your needs. <br>
 e.g. <br>
 ```kubernetesDistro: "K8S"```
 

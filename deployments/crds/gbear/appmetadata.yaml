@@ -1,5 +1,5 @@
-displayName: msm-crds
-description: Media Streaming Mesh
+displayName: MSM-crds
+description: Media Streaming Mesh CRDs
 # The following optional fields provide a more detailed properties to describe your GBAP.
 # Uncomment as required and modify field values specifically for your application.
 
