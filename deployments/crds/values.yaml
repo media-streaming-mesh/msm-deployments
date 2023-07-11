@@ -31,7 +31,8 @@ controllerManager:
         drop:
         - ALL
     image:
-      repository: ciscolabs/msm-nc # TODO change this to "ghcr.io/media-streaming-mesh/msm-nc:latest"
+      # TODO change this to "ghcr.io/media-streaming-mesh/msm-nc:latest"
+      repository: ciscolabs/msm-nc
       tag: "07102023"
     imagePullPolicy: IfNotPresent
     resources:
