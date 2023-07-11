@@ -35,7 +35,7 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: url-handler
+  name: msm-cp
   labels:
     app: msm-cp
     {{- include "MSM.labels" . | nindent 4 }}
@@ -49,17 +49,16 @@ rules:
     verbs:
       - list
       - get
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  name: node-watcher
-  labels:
-    app: msm-cp
-    {{- include "MSM.labels" . | nindent 4 }}
-rules:
   - apiGroups: [""]
     resources:
       - nodes
     verbs:
       - watch
+  - apiGroups: ["apiextensions.k8s.io"]
+    resources:
+      - customresourcedefinitions
+    verbs:
+      - '*'
+  - apiGroups: ["mediastreamingmesh.io"]
+    resources: ["*"]
+    verbs: ["*"]

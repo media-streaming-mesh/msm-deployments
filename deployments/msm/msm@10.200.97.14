@@ -1,0 +1,11 @@
+apiVersion: mediastreamingmesh.io/v1alpha1
+kind: Stream
+metadata:
+  name: test-stream-yaml
+spec:
+  stubIP: "10.201.95.0"
+  serverIP: "10.201.44.39"
+  clientIP: "10.21.69.243"
+  serverPort: 8050
+  clientPort: 59512
+  streamState: "play"

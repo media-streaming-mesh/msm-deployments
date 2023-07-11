@@ -1,5 +1,5 @@
 # change this to desired Kubernetes Distribution e.g. "K8S" or "K3S"
-kubernetesDistro: "K3S"
+kubernetesDistro: "K8S"
 
 cpUrl: "http://msm-cp:9000"
 
@@ -20,8 +20,8 @@ webhookImage:
   tag: latest
 
 controlPlaneImage:
-  name: ghcr.io/media-streaming-mesh/msm-cp
-  tag: latest
+  name: ciscolabs/msm-cp
+  tag: "20230706be"
 
 networkControllerImage:
   name: ghcr.io/media-streaming-mesh/msm-nc
