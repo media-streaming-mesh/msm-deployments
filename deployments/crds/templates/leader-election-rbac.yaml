@@ -8,37 +8,37 @@ metadata:
     app.kubernetes.io/part-of: msm-nc
   {{- include "msm.labels" . | nindent 4 }}
 rules:
-- apiGroups:
-  - ""
-  resources:
-  - configmaps
-  verbs:
-  - get
-  - list
-  - watch
-  - create
-  - update
-  - patch
-  - delete
-- apiGroups:
-  - coordination.k8s.io
-  resources:
-  - leases
-  verbs:
-  - get
-  - list
-  - watch
-  - create
-  - update
-  - patch
-  - delete
-- apiGroups:
-  - ""
-  resources:
-  - events
-  verbs:
-  - create
-  - patch
+  - apiGroups:
+      - ""
+    resources:
+      - configmaps
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+  - apiGroups:
+      - coordination.k8s.io
+    resources:
+      - leases
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - update
+      - patch
+      - delete
+  - apiGroups:
+      - ""
+    resources:
+      - events
+    verbs:
+      - create
+      - patch
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -54,6 +54,6 @@ roleRef:
   kind: Role
   name: '{{ include "msm.fullname" . }}-leader-election-role'
 subjects:
-- kind: ServiceAccount
-  name: '{{ include "msm.fullname" . }}-controller-manager'
-  namespace: '{{ .Release.Namespace }}'
+  - kind: ServiceAccount
+    name: '{{ include "msm.fullname" . }}-controller-manager'
+    namespace: '{{ .Release.Namespace }}'

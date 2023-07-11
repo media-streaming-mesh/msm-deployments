@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/part-of: msm-nc
   {{- include "msm.labels" . | nindent 4 }}
 rules:
-- nonResourceURLs:
-  - /metrics
-  verbs:
-  - get
+  - nonResourceURLs:
+      - /metrics
+    verbs:
+      - get
