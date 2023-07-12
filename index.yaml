@@ -81,6 +81,17 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/camera-0.0.2/camera-0.0.2.tgz
     version: 0.0.2
+  crds:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2023-07-12T17:34:32.57080125Z"
+    description: A Helm chart for msm-crd
+    digest: 9540c29b3bca33ef2d7c2b62c6fad1b95763d5d9823ffe2d491e62f068a49ec4
+    name: crds
+    type: application
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/crds-0.0.1/crds-0.0.1.tgz
+    version: 0.0.1
   etcd:
   - apiVersion: v2
     created: "2023-06-16T17:50:49.556105002Z"
@@ -162,6 +173,16 @@ entries:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/ingress-0.0.3/ingress-0.0.3.tgz
     version: 0.0.3
   msm:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-07-12T17:34:32.713725659Z"
+    description: A Helm chart for MSM Deployment
+    digest: 7daf27e3afa0225d750e810850d16d0cc8eb927b0f3bd6ef575931fa774ca48b
+    name: msm
+    type: application
+    urls:
+    - https://github.com/media-streaming-mesh/msm-deployments/releases/download/msm-0.1.17/msm-0.1.17.tgz
+    version: 0.1.17
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-06-16T17:50:50.007091309Z"
@@ -394,4 +415,4 @@ entries:
     urls:
     - https://github.com/media-streaming-mesh/msm-deployments/releases/download/rtsp-0.0.3/rtsp-0.0.3.tgz
     version: 0.0.3
-generated: "2023-06-26T17:53:45.860891704Z"
+generated: "2023-07-12T17:34:32.71385806Z"
